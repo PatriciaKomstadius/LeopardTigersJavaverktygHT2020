@@ -1,5 +1,12 @@
 
 public class ContactsIO {
 
-    try (BufferedReader br = new BufferedReader(new FileReader))
+    public void readContacts() throws IOException {
+
+    try(
+    BufferedReader br = new BufferedReader(new FileReader("ContactBook.txt")))
+
+
+
+    }
 }
