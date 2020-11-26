@@ -9,8 +9,8 @@ public class ContactsIO {
         //private List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("ContactBook.txt"))) {
-            String input;
-            while ((input=reader.readLine())!=null){
+            String input = reader.readLine();
+            while (input != null) {
                 String[] records = input.split(" ");
                 String firstName = records[0];
                 String lastName = records[1];
@@ -19,12 +19,17 @@ public class ContactsIO {
                 contacts.add(contact);
             }
         }
-
-   /* public void writeContact(Contact contact) throws IOException {
-
-        try (BufferedWriter writer =new BufferedWriter(new FileWriter("ContactBook.txt")))
-
-
-    } */
     }
+
+    public void writeContact(Contact contact) throws IOException {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("ContactBook.txt"))){
+            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber);
+        }
+    }
+
+    public void removeContact(Contact contact){
+        File originalFile = new File("ContactBook.txt");
+    }
+
 }
