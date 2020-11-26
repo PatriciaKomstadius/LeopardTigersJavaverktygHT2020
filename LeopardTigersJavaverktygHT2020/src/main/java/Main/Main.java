@@ -1,5 +1,6 @@
 package Main;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,10 +27,12 @@ public class Main {
         System.out.println("4. Show all contacts in contactbook");
         System.out.println("0. Exit");
     }
-    public static void menu(){
+
+    public static void menu() {
 
         int choice = readInt("Enter your choice:");
-        switch (choice){
+
+        switch (choice) {
 
             case 0:
                 loop = false;
@@ -44,6 +47,9 @@ public class Main {
                 search();
                 break;
             case 4:
+                break;
+            default:
+                System.out.println("Please chose one of the options listed above.");
 
                 break;
         }
@@ -70,37 +76,37 @@ public class Main {
         return num;
     }
 
-            public static void add() {
-                System.out.println("Name: ");
-                String name = scan.nextLine();
 
-                System.out.println("Phonenumber: ");
-                String number = scan.nextLine();
+    public static void add() {
+        System.out.println("Enter name of contact: ");
+        String name = scan.nextLine();
 
-                //Contact contact = new Contact(name, number);
-                //ContactManagement.addContact(contact);
-            }
+        System.out.println("Enter phonenumber: ");
+        String number = scan.nextLine();
 
-            public static void delete() {
-                System.out.print("Enter phonenumber of contact to delete: ");
-                String contactToDelete = scan.nextLine();
+        System.out.println("New contact added successfully.");
 
-                //ContactManagement.deleteContact(contact);
-            }
-            public static void search() {
-                System.out.println("Enter name of contact to search for: ");
-                String contact = scan.nextLine();
+        //Contact contact = new Contact(name, number);
+        //ContactManagement.addContact(contact);
 
-                // ContactManagement.search(contact);
-            }
+    }
 
-            /*
 
-            public static void showContacts() {
-       Metod till ContactManagement?
-            }
+    public static void delete() {
+        System.out.print("Enter phonenumber of contact to delete: ");
+        String contactToDelete = scan.nextLine();
 
-             */
-        }
+        //ContactManagement.deleteContact(contact);
+
+        System.out.println("Contact removed.");
+    }
+
+    public static void search() {
+        System.out.println("Enter name of contact to search for: ");
+        String contact = scan.nextLine();
+
+        // ContactManagement.search(contact);
+    }
+}
 
 
