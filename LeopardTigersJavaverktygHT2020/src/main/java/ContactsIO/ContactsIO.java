@@ -24,12 +24,14 @@ public class ContactsIO {
     public void writeContact(Contact contact) throws IOException {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("ContactBook.txt"))){
-            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber + "\n");
+            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
+                                contact.getPhoneNumber().replaceAll("\\s", "") + "\n");
         }
     }
 
     public void removeContact(Contact contact) throws IOException {
-        String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " + contact.getPhoneNumber;
+        String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
+                                    contact.getPhoneNumber().replaceAll("\\s", "");
         File originalFile = new File("ContactBook.txt");
         File tempFile = new File("TempFile.txt");
 
