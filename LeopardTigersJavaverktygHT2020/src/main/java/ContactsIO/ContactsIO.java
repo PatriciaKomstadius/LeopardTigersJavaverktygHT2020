@@ -1,12 +1,13 @@
 package ContactsIO;
 
 import java.io.*;
+import java.util.*;
 
 public class ContactsIO {
 
     public List<Contact> readContacts() throws IOException {
 
-        private List<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("ContactBook.txt"))) {
             String line;
@@ -19,6 +20,7 @@ public class ContactsIO {
                 contacts.add(contact);
             }
         }
+        return contacts;
     }
 
     public void writeContact(Contact contact) throws IOException {
