@@ -4,9 +4,9 @@ import java.io.*;
 
 public class ContactsIO {
 
-    public void readContacts() throws IOException {
+    public List<Contact> readContacts() throws IOException {
 
-        //private List<Contact> contacts = new ArrayList<>();
+        private List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("ContactBook.txt"))) {
             String line;
