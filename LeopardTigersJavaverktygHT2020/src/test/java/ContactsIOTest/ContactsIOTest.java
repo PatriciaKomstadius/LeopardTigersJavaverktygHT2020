@@ -8,11 +8,13 @@ import org.junit.jupiter.params.*;
 import java.io.File;
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ContactsIOTest {
 
     private ContactsIO cIO;
+    private Contact testContact;
 
     @BeforeAll
     public static void message(){
@@ -21,12 +23,15 @@ public class ContactsIOTest {
 
     @BeforeEach
     public void instantiate(){
-        cIO=new ContactsIO();
+        cIO=new ContactsIO("TestContacts.txt");
+        testContact = new Contact("John", "Doe", 0701234567);
     }
 
     @Test
-    public void test_readContacts(){
-        //testa att contacts-listan är samma som readContacts-listan
+    public void test_readContacts() throws IOException{
+        cIO.writeContact(testContact);
+        assertEquals((testContact.getFirstName() + " " + testContact.getLastName() + " " +
+                testContact.getPhoneNumber()), cIO.readContacts());
     }
 
     @Test
