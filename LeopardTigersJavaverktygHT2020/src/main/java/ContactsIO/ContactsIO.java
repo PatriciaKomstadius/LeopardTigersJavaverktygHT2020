@@ -5,11 +5,17 @@ import java.util.*;
 
 public class ContactsIO {
 
+    private String filepath;
+
+    public ContactsIO(String filepath){
+        this.filepath=filepath;
+    }
+
     public List<Contact> readContacts() throws IOException {
 
         List<Contact> contacts = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("ContactBook.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] records = line.split(" ");
@@ -25,17 +31,17 @@ public class ContactsIO {
 
     public void writeContact(Contact contact) throws IOException {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("ContactBook.txt"))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
             writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
                                 contact.getPhoneNumber().replaceAll("\\s", "") + "\n");
         }
     }
 
-    public void removeContact(Contact contact) throws IOException {
+    public void removeContact(Contact contact, String tempFilePath) throws IOException {
         String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
                                     contact.getPhoneNumber().replaceAll("\\s", "");
-        File originalFile = new File("ContactBook.txt");
-        File tempFile = new File("TempFile.txt");
+        File originalFile = new File(filepath);
+        File tempFile = new File(tempFilePath);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
             BufferedReader reader = new BufferedReader(new FileReader(originalFile));
