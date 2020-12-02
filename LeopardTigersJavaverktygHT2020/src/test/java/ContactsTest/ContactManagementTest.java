@@ -45,6 +45,8 @@ public class ContactManagementTest {
     @DisplayName("Remove contacts")
     public void removeContactTest() {
         Contact contact = new Contact("Jane", "Doe", "0707000070");
+        ContactManagement.addContact(contact);
+        ContactManagement.removeContact("0707000070");
 
         assertNull(contact);
     }
