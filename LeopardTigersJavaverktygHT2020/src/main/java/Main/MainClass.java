@@ -14,8 +14,9 @@ public class MainClass {
             System.out.println("========ContactBook========");
             System.out.println("1. Add contact");
             System.out.println("2. Delete contact");
-            System.out.println("3. Search for contact");
-            System.out.println("4. Show all contacts in contactbook");
+            System.out.println("3. Search contact by last name");
+            System.out.println("4. Search contact by first name");
+            System.out.println(".5. Show all contacts in contactbook");
             System.out.println("0. Exit");
 
             menu();
@@ -43,9 +44,12 @@ public class MainClass {
                         delete();
                         break;
                     case 3:
-                        search();
+                        searchByFirstName();
                         break;
                     case 4:
+                        searchByLastName();
+                        break;
+                    case 5:
                         ContactManagement.showContacts();
                         break;
                     default:
@@ -61,13 +65,16 @@ public class MainClass {
     }
 
     public static void add() {
-        System.out.println("Enter name of contact: ");
+        System.out.println("Enter first name of contact: ");
+        String name = scan.nextLine();
+
+        System.out.println("Enter last name of contact: ");
         String name = scan.nextLine();
 
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
-        Contact c = new Contact(name, number);
+        Contact c = new Contact(firstname, lastname, number);
         ContactManagement.addContact(c);
 
     }
@@ -80,12 +87,20 @@ public class MainClass {
 
     }
 
-    public static void search() {
+    public static void searchByFirstName() {
         System.out.println("Enter name of contact to search for: ");
-        String contact = scan.nextLine();
+        String firstName = scan.nextLine();
 
-        ContactManagement.findContact(contact);
+        ContactManagement.findContact(firstName);
     }
+
+    public static void searchByLastName() {
+        System.out.println("Enter name of contact to search for: ");
+        String lastName = scan.nextLine();
+
+        ContactManagement.findContact(lastName);
+    }
+
 
 }
 
