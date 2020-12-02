@@ -88,14 +88,14 @@ public class MainClass {
     }
 
     public static void searchByFirstName() {
-        System.out.println("Enter name of contact to search for: ");
+        System.out.println("Enter first name of contact to search for: ");
         String firstName = scan.nextLine();
 
         ContactManagement.findContact(firstName);
     }
-
+ 
     public static void searchByLastName() {
-        System.out.println("Enter name of contact to search for: ");
+        System.out.println("Enter last name of contact to search for: ");
         String lastName = scan.nextLine();
 
         ContactManagement.findContact(lastName);
