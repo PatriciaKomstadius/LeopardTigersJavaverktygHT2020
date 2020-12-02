@@ -38,7 +38,14 @@ public class ContactManagementTest {
     @DisplayName("Add contacts")
     public void addContactTest() {
         ContactManagement contactManagement = new ContactManagement();
+        Contact contact = new Contact("Jane", "Doe", "0707000070");
+        ContactManagement.addContact(contact);
 
+        assertTrue(contact.getFirstName().equals("Jane"));
+        assertTrue(contact.getLastName().equals("Doe"));
+        assertTrue(contact.getNumber().equals("0707000070"));
+
+        assertNotNull(contact);
     }
 
     @Test
