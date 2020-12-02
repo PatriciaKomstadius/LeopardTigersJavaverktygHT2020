@@ -25,7 +25,7 @@ public class ContactsIOTest {
     @BeforeEach
     public void instantiate(){
         cIO=new ContactsIO("TestContacts.txt");
-        testContact = new Contact("John", "Doe", 0701234567);
+        testContact = new Contact("John", "Doe", "0701234567");
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ContactsIOTest {
 
     @Test
     public void test_removeContact_exception(){
-        Contact contact = new Contact("a", "b", "0701234567")
+        Contact contact = new Contact("a", "b", "0701234567");
         File tempFile = new File("TempFile.txt");
         try{
         if (!tempFile.createNewFile()){
             System.out.println("File creation failed.");
         }} catch (IOException e){
         }
-        assertThrows(IOException.class, () -> cIO.removeContact(contact));
+        assertThrows(IOException.class, () -> cIO.removeContact(contact, "Tempfile.txt"));
         //Testa om det funkar med bara en felaktig kontakt
     }
 }
