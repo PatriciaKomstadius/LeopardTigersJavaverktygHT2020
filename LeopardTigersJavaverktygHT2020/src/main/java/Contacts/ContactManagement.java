@@ -1,4 +1,4 @@
-package org.example;
+package Contacts;
 
 import java.util.ArrayList;
 
