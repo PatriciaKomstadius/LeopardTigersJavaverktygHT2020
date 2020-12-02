@@ -66,15 +66,15 @@ public class MainClass {
 
     public static void add() {
         System.out.println("Enter first name of contact: ");
-        String name = scan.nextLine();
+        String firstName = scan.nextLine();
 
         System.out.println("Enter last name of contact: ");
-        String name = scan.nextLine();
+        String lastName = scan.nextLine();
 
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
-        Contact c = new Contact(firstname, lastname, number);
+        Contact c = new Contact(firstName, lastName, number);
         ContactManagement.addContact(c);
 
     }
