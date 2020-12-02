@@ -6,6 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import Contacts.Contact;
+import Contacts.ContactManagement;
+
 public class ContactManagementTest {
 
     @Test
