@@ -1,4 +1,7 @@
+package Main.Test;
 
+import Contacts.Contact;
+import Contacts.ContactManagement;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Disabled;
@@ -20,7 +23,7 @@ public class MainClassTest {
     @Disabled
     @Test
     void testMenuInputMismatchexception() {
-        MainClass main = new MainClass();
+        Main.MainClass main = new Main.MainClass();
 
         String choice = "bad input";
 
@@ -56,7 +59,7 @@ public class MainClassTest {
         ContactManagement.addContact(contact2);
 
         String deleteContact = "12345";
-        ContactManagement.deleteContact(deleteContact);
+        ContactManagement.removeContact(deleteContact);
 
         assertEquals(1, ContactManagement.showContacts());
 
