@@ -3,7 +3,6 @@ package ContactsTest;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import Contacts.Contact;
-import Contacts.ContactManagement;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +39,7 @@ public class ContactTest {
         Contact contact = new Contact("Nika", "Arya", "0734567890");
 
         assertTrue(contact.toString().equals("\n" + contact.getFirstName() +
-                " " + contact.getLastName() + "  |ID|: " + contact.getNumber()));
+                " " + contact.getLastName() + "  |Number|: " + contact.getNumber()));
 
         assertNotNull(contact.toString());
     }
