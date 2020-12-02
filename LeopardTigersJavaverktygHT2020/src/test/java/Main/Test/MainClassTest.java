@@ -41,25 +41,25 @@ public class MainClassTest {
     void testAdd() {
         Contact contact = new Contact("Testperson1", "12345");
         Contact contact2 = new Contact("Testperson2", "23456");
-        Contactmanagement.addContact(contact);
-        Contactmanagement.addContact(contact2);
-        assertEquals(2, Contactmanagement.showContacts());
+        ContactManagement.addContact(contact);
+        ContactManagement.addContact(contact2);
+        assertEquals(2, ContactManagement.showContacts());
     }
 
     @Test
     void testDelete() {
 
         String deleteContact = "12345";
-        Contactmanagement.deleteContact(deleteContact);
+        ContactManagement.deleteContact(deleteContact);
 
-        assertEquals(1, Contactmanagement.showContacts());
+        assertEquals(1, ContactManagement.showContacts());
     }
 
     @Test
     void testSearch() {
         Contact contact = new Contact("Testperson2", "23456");
 
-        Contactmanagement.addContact(contact);
+        ContactManagement.addContact(contact);
 
         assertEquals("Testperson2", contact.getName());
     }
