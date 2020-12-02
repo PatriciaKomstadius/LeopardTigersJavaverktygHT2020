@@ -1,5 +1,7 @@
 package ContactsIO;
 
+import Contacts.Contact;
+
 import java.io.*;
 import java.util.*;
 
@@ -33,13 +35,13 @@ public class ContactsIO {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
             writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
-                                contact.getPhoneNumber().replaceAll("\\s", "") + "\n");
+                                contact.getNumber().replaceAll("\\s", "") + "\n");
         }
     }
 
     public void removeContact(Contact contact, String tempFilePath) throws IOException {
         String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
-                                    contact.getPhoneNumber().replaceAll("\\s", "");
+                                    contact.getNumber().replaceAll("\\s", "");
         File originalFile = new File(filepath);
         File tempFile = new File(tempFilePath);
 
