@@ -74,4 +74,17 @@ public class ContactsIO {
         }
     }
 
+    public void clearContacts(){
+        try {
+            File contacts = new File(filepath);
+            if (contacts.delete()) {
+                contacts.createNewFile();
+            } else {
+                System.out.println("File deletion failed.");
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }
