@@ -46,7 +46,7 @@ public class MainClass {
                         search();
                         break;
                     case 4:
-                        Contactmanagement.showContacts();
+                        ContactManagement.showContacts();
                         break;
                     default:
                         System.out.println("Please chose one of the options listed above.");
@@ -68,7 +68,7 @@ public class MainClass {
         String number = scan.nextLine();
 
         Contact c = new Contact(name, number);
-        Contactmanagement.addContact(c);
+        ContactManagement.addContact(c);
 
     }
 
@@ -76,7 +76,7 @@ public class MainClass {
         System.out.print("Enter phone number of contact to delete: ");
         String number = scan.nextLine();
 
-        Contactmanagement.deleteContact(number);
+        ContactManagement.deleteContact(number);
 
     }
 
@@ -84,7 +84,7 @@ public class MainClass {
         System.out.println("Enter name of contact to search for: ");
         String contact = scan.nextLine();
 
-        Contactmanagement.findContact(contact);
+        ContactManagement.findContact(contact);
     }
 
 }
