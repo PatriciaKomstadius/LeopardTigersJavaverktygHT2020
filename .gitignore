@@ -33,3 +33,5 @@ buildNumber.properties
 .idea/
 
 *.iml
+
+*.swp

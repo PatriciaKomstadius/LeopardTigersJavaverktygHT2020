@@ -1,6 +1,8 @@
 
 package ContactsIO;
 
+import Contacts.Contact;
+
 import java.io.*;
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class ContactsIO {
         this.filepath=filepath;
     }
 
-    public List<Contact> readContacts() throws IOException {
+    public List<Contact> readContacts() {
 
         List<Contact> contacts = new ArrayList<>();
 
@@ -26,21 +28,25 @@ public class ContactsIO {
                 Contact contact = new Contact(firstName, lastName, phoneNumber);
                 contacts.add(contact);
             }
+        } catch (IOException e){
+            e.printStackTrace();
         }
         return contacts;
     }
 
-    public void writeContact(Contact contact) throws IOException {
+    public void writeContact(Contact contact) {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true))){
             writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
-                                contact.getPhoneNumber().replaceAll("\\s", "") + "\n");
+                                contact.getNumber().replaceAll("\\s", "") + "\n");
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
-    public void removeContact(Contact contact, String tempFilePath) throws IOException {
+    public void removeContact(Contact contact, String tempFilePath) {
         String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
-                                    contact.getPhoneNumber().replaceAll("\\s", "");
+                                    contact.getNumber().replaceAll("\\s", "");
         File originalFile = new File(filepath);
         File tempFile = new File(tempFilePath);
 
@@ -63,6 +69,8 @@ public class ContactsIO {
             if (!tempFile.renameTo(new File("ContactBook.txt"))) {
                 System.out.println("File update failed.");
             }
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 
