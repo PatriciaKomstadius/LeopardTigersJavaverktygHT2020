@@ -1,5 +1,7 @@
 //Hej Patricia! Om du ser detta, har du senaste versionen.
 
+package Main;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -51,7 +53,7 @@ public class MainClass {
                         searchByLastName();
                         break;
                     case 5:
-                        ContactManagement.showContacts();
+                        Contacts.ContactManagement.showContacts();
                         break;
                     default:
                         System.out.println("Please chose one of the options listed above.");
@@ -75,8 +77,8 @@ public class MainClass {
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
-        Contact c = new Contact(firstName, lastName, number);
-        ContactManagement.addContact(c);
+        Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
+        Contacts.ContactManagement.addContact(c);
 
     }
 
@@ -84,7 +86,7 @@ public class MainClass {
         System.out.print("Enter phone number of contact to delete: ");
         String number = scan.nextLine();
 
-        ContactManagement.deleteContact(number);
+        Contacts.ContactManagement.removeContact(number);
 
     }
 
@@ -92,14 +94,14 @@ public class MainClass {
         System.out.println("Enter first name of contact to search for: ");
         String firstName = scan.nextLine();
 
-        ContactManagement.findContact(firstName);
+        Contacts.ContactManagement.searchFirstName(firstName);
     }
  
     public static void searchByLastName() {
         System.out.println("Enter last name of contact to search for: ");
         String lastName = scan.nextLine();
 
-        ContactManagement.findContact(lastName);
+        Contacts.ContactManagement.searchLastName(lastName);
     }
 
 
