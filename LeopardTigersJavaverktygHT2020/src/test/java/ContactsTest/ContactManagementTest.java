@@ -14,8 +14,8 @@ public class ContactManagementTest {
     @Test
     @DisplayName("Show contacts")
     public void showContactsTest() {
-        ContactManagement contactManagement = new ContactManagement();
         Contact contact = new Contact("Jane", "Doe", "0707000070");
+        ContactManagement.addContact(contact);
 
         assertAll("contact",
                 () -> assertEquals("Jane", contact.getFirstName()),
@@ -26,18 +26,13 @@ public class ContactManagementTest {
                 () -> assertNotEquals("Jenkins", contact.getLastName()),
                 () -> assertNotEquals("0123456789", contact.getNumber()),
 
-                () -> assertNotNull(contact.getFirstName()),
-                () -> assertNotNull(contact.getLastName()),
-                () -> assertNotNull(contact.getNumber())
+                () -> assertNotNull(contact)
                 );
-
-
     }
 
     @Test
     @DisplayName("Add contacts")
     public void addContactTest() {
-        ContactManagement contactManagement = new ContactManagement();
         Contact contact = new Contact("Jane", "Doe", "0707000070");
         ContactManagement.addContact(contact);
 
@@ -61,14 +56,22 @@ public class ContactManagementTest {
     @Test
     @DisplayName("Search First Name")
     public void searchFirstNameTest() {
-        ContactManagement contactManagement = new ContactManagement();
+        Contact contact = new Contact("Jane", "Doe", "0707000070");
+        ContactManagement.addContact(contact);
 
+        assertTrue(contact.getFirstName().equals("Jane"));
+        assertNotEquals("Joe", contact.getFirstName());
+        assertNotNull(contact);
     }
 
     @Test
     @DisplayName("Search Last Name")
     public void searchLastNameTest() {
-        ContactManagement contactManagement = new ContactManagement();
+        Contact contact = new Contact("Jane", "Doe", "0707000070");
+        ContactManagement.addContact(contact);
 
+        assertTrue(contact.getLastName().equals("Doe"));
+        assertNotEquals("Jenkins", contact.getLastName());
+        assertNotNull(contact);
     }
 }
