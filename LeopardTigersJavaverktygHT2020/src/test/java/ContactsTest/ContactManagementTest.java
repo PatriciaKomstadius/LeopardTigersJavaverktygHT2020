@@ -1,4 +1,4 @@
-package org.example;
+package ContactsTest;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
