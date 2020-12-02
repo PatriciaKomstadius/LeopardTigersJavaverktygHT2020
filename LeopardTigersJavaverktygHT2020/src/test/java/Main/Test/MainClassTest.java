@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MainClassTest {
 
 
-    
+
 
     @Disabled
     @Test
@@ -39,8 +39,8 @@ public class MainClassTest {
 
     @Test
     void testAdd() {
-        Contact contact = new Contact("Testperson1", "12345");
-        Contact contact2 = new Contact("Testperson2", "23456");
+        Contact contact = new Contact("Testperson1", "1Efternamn", "12345");
+        Contact contact2 = new Contact("Testperson2", "2Efternamn", "23456");
         ContactManagement.addContact(contact);
         ContactManagement.addContact(contact2);
         assertEquals(2, ContactManagement.showContacts());
@@ -49,19 +49,35 @@ public class MainClassTest {
     @Test
     void testDelete() {
 
+
+        Contact contact = new Contact("Testperson1", "1Efternamn", "12345");
+        Contact contact2 = new Contact("Testperson2", "2Efternamn", "23456");
+        ContactManagement.addContact(contact);
+        ContactManagement.addContact(contact2);
+
         String deleteContact = "12345";
         ContactManagement.deleteContact(deleteContact);
 
         assertEquals(1, ContactManagement.showContacts());
+
     }
 
     @Test
-    void testSearch() {
-        Contact contact = new Contact("Testperson2", "23456");
+    void testSearchByFirstName() {
+        Contact contact = new Contact("Testperson2", "2Efternamn", "23456");
 
         ContactManagement.addContact(contact);
 
-        assertEquals("Testperson2", contact.getName());
+        assertEquals("Testperson2", contact.getFirstName());
+    }
+
+    @Test
+    void testSearchByLastName() {
+        Contact contact = new Contact("Testperson2", "2Efternamn", "23456");
+
+        ContactManagement.addContact(contact);
+
+        assertEquals("Testperson2", contact.getLastName());
     }
 }
 
