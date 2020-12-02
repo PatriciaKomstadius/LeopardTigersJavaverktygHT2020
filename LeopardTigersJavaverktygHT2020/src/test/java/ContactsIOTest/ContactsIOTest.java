@@ -1,5 +1,6 @@
 package ContactsIOTest;
 
+import Contacts.Contact;
 import ContactsIO.ContactsIO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -31,7 +32,7 @@ public class ContactsIOTest {
     public void test_readContacts() throws IOException{
         cIO.writeContact(testContact);
         assertEquals((testContact.getFirstName() + " " + testContact.getLastName() + " " +
-                testContact.getPhoneNumber()), cIO.readContacts());
+                testContact.getNumber()), cIO.readContacts());
     }
 
     @Test
