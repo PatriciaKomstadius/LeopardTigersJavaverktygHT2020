@@ -17,6 +17,7 @@ public class ContactManagement {
 
     public static void addContact(Contact c) {
         contacts.add(c);
+        saveContact(c);
     }
 
     public static void removeContact(String number) {
@@ -37,6 +38,11 @@ public class ContactManagement {
                 System.out.println(c);
             }
         }
+    }
+
+
+    public static void saveContact(Contact c){
+        io.writeContact(c);
     }
 
 }

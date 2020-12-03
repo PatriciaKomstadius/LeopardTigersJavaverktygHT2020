@@ -85,9 +85,6 @@ public class MainClass {
         Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
         Contacts.ContactManagement.addContact(c);
 
-        saveContact(c);
-
-
     }
 
     public static void delete() {
@@ -110,10 +107,6 @@ public class MainClass {
         String lastName = scan.nextLine();
 
         Contacts.ContactManagement.searchLastName(lastName);
-    }
-
-    public static void saveContact(Contact c){
-        io.writeContact(c);
     }
 
 }
