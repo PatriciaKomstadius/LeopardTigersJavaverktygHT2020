@@ -1,6 +1,12 @@
 //Hej Patricia! Om du ser detta, har du senaste versionen.
 
+<<<<<<< HEAD
 package Main;
+
+package Main;
+
+import Contacts.Contact;
+import ContactsIO.ContactsIO;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,6 +15,7 @@ public class MainClass {
 
     private static Scanner scan = new Scanner(System.in);
     static boolean loop = true;
+    private static ContactsIO io = new ContactsIO("Contactbook.txt");
 
     public static void main(String[] args) {
 
@@ -77,8 +84,17 @@ public class MainClass {
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
+
         Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
         Contacts.ContactManagement.addContact(c);
+
+        Contact c = new Contact(name, number);
+        ContactManagement.addContact(c);
+
+        Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
+        Contacts.ContactManagement.addContact(c);
+        saveContact(c);
+
 
     }
 
@@ -104,6 +120,9 @@ public class MainClass {
         Contacts.ContactManagement.searchLastName(lastName);
     }
 
+    public static void saveContact(Contact c){
+        io.writeContact(c);
+    }
 
 }
 

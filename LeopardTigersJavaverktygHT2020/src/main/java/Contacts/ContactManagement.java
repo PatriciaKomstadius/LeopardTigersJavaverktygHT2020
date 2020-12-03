@@ -1,10 +1,13 @@
 package Contacts;
 
+import ContactsIO.ContactsIO;
+
 import java.util.ArrayList;
 
 public class ContactManagement {
 
-    private static final ArrayList<Contact> contacts = new ArrayList<>();
+    private static ContactsIO io = new ContactsIO("Contactbook.txt");
+    private static final ArrayList<Contact> contacts = new ArrayList<>(io.readContacts());
 
     public static void showContacts() {
         for (Contact c : contacts) {
