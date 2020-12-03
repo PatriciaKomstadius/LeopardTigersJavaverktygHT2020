@@ -40,10 +40,11 @@ public class MainClassTest {
     void testAdd()  {
        Contact contact = new Contact("Elena", "Nilsson", "1234");
         ContactManagement.addContact(contact);
-        assertNotNull(contact);
+       // assertNotNull(contact);
+        //assertEquals(1, ContactManagement.showContacts());
     }
 
-    @DisplayName("Search contact by first name")
+    @DisplayName("Searching contact by first name")
     @Test
     void testSearchByFirstName() {
        Contact contact = new Contact("Nisse", "Ure", "8888");
@@ -52,16 +53,17 @@ public class MainClassTest {
         assertEquals("Nisse", contact.getFirstName());
     }
 
-    @DisplayName("Seach contact by last name")
+    @DisplayName("Seaching contact by last name")
     @Test
     void testSearchByLastName() {
-       Contact contact = new Contact("Nisse", "Ure", "8888");
-        String lastName = "Ure";
+       Contact contact = new Contact("Måns", "Sunesson", "4444");
+        String lastName = "Sunesson";
         ContactManagement.searchFirstName(lastName);
-        assertEquals("Ure", contact.getLastName());
+        assertEquals("Sunesson", contact.getLastName());
     }
 
  /*
+    @DisplayName("Removing contact from contactbook")
     @Test
     void testRemove() {
         String removeContact1 = "1234";

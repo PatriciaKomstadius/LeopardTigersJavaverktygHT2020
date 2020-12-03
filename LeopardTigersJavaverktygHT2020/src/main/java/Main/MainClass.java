@@ -1,8 +1,5 @@
-//Hej Patricia! Om du ser detta, har du senaste versionen.
-
 package Main;
 
-import Contacts.Contact;
 import ContactsIO.ContactsIO;
 
 import java.util.InputMismatchException;
@@ -12,7 +9,7 @@ public class MainClass {
 
     private static Scanner scan = new Scanner(System.in);
     static boolean loop = true;
-    private static ContactsIO io = new ContactsIO("Contactbook.txt");
+    //private static ContactsIO io = new ContactsIO("Contactbook.txt");
 
     public static void main(String[] args) {
 
