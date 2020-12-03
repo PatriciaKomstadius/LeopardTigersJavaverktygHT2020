@@ -2,6 +2,7 @@
 package ContactsIOTest;
 
 import Contacts.Contact;
+import Contacts.ContactManagement;
 import ContactsIO.ContactsIO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -26,27 +27,31 @@ public class ContactsIOTest {
     }
 
     @BeforeEach
-    public void instantiate(){
+    public void instantiateAndWrite(){
         io=new ContactsIO("TestContacts.txt");
         testContact = new Contact("John", "Doe", "0701234567");
+        io.writeContact(testContact);
     }
 
     @Test
-    public void test_writeContact(){
-        io.writeContact(testContact);
+    public void test_writeContact() throws IOException{
         try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))){
             assertEquals("John Doe 0701234567", reader.readLine());
-        } catch (IOException e){
-            e.printStackTrace();
         }
     }
 
     @Test
     public void test_readContacts() throws IOException{
-        io.writeContact(testContact);
         Contact contactOnFile=io.readContacts().get(0);
         assertEquals(testContact.getFirstName()+testContact.getLastName()+testContact.getNumber(),
                 contactOnFile.getFirstName()+contactOnFile.getLastName()+contactOnFile.getNumber());
+    }
+
+    @Test
+    public void test_rewriteContacts(){
+        io.reWriteContacts();
+        assertEquals(ContactManagement.getContacts(), io.readContacts());
+        }
     }
 /*
     @Test
@@ -63,4 +68,4 @@ public class ContactsIOTest {
     }
 
  */
-}
+
