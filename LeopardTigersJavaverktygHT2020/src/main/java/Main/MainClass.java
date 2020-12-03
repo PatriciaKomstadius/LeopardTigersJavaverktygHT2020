@@ -88,11 +88,6 @@ public class MainClass {
         Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
         Contacts.ContactManagement.addContact(c);
 
-        Contact c = new Contact(name, number);
-        ContactManagement.addContact(c);
-
-        Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
-        Contacts.ContactManagement.addContact(c);
         saveContact(c);
 
 
