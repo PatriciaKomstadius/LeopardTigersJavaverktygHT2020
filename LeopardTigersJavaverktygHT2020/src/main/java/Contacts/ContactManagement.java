@@ -21,12 +21,24 @@ public class ContactManagement {
 
     public static void addContact(Contact c) {
         contacts.add(c);
+    }
+
+    public static void addContact(Contact c, boolean writeToFile) {
+        contacts.add(c);
+        if (writeToFile){
         io.writeContact(c);
+        }
     }
 
     public static void removeContact(String number) {
         contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number));
-        io.reWriteContacts();
+    }
+
+    public static void removeContact(String number, boolean removeFromFile) {
+        contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number));
+        if (removeFromFile) {
+            io.reWriteContacts();
+        }
     }
 
     public static void searchFirstName(String firstName) {
