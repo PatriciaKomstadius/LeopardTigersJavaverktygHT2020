@@ -80,7 +80,7 @@ public class MainClass {
 
 
         Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
-        Contacts.ContactManagement.addContact(c);
+        Contacts.ContactManagement.addContact(c, true);
 
     }
 
@@ -88,7 +88,7 @@ public class MainClass {
         System.out.print("Enter phone number of contact to delete: ");
         String number = scan.nextLine();
 
-        Contacts.ContactManagement.removeContact(number);
+        Contacts.ContactManagement.removeContact(number, true);
 
     }
 
