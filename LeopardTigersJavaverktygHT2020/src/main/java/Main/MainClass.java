@@ -1,5 +1,13 @@
 //Hej Patricia! Om du ser detta, har du senaste versionen.
 
+<<<<<<< Updated upstream
+=======
+package Main;
+
+import Contacts.Contact;
+import ContactsIO.ContactsIO;
+
+>>>>>>> Stashed changes
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,6 +15,7 @@ public class MainClass {
 
     private static Scanner scan = new Scanner(System.in);
     static boolean loop = true;
+    private static ContactsIO io = new ContactsIO("Contactbook.txt");
 
     public static void main(String[] args) {
 
@@ -68,8 +77,14 @@ public class MainClass {
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
+<<<<<<< Updated upstream
         Contact c = new Contact(name, number);
         ContactManagement.addContact(c);
+=======
+        Contacts.Contact c = new Contacts.Contact(firstName, lastName, number);
+        Contacts.ContactManagement.addContact(c);
+        saveContact(c);
+>>>>>>> Stashed changes
 
     }
 
@@ -87,6 +102,21 @@ public class MainClass {
 
         ContactManagement.findContact(contact);
     }
+<<<<<<< Updated upstream
+=======
+ 
+    public static void searchByLastName() {
+        System.out.println("Enter last name of contact to search for: ");
+        String lastName = scan.nextLine();
+
+        Contacts.ContactManagement.searchLastName(lastName);
+    }
+
+    public static void saveContact(Contact c){
+        io.writeContact(c);
+    }
+
+>>>>>>> Stashed changes
 
 }
 

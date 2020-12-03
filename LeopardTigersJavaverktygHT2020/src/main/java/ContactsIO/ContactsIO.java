@@ -14,7 +14,8 @@ public class ContactsIO {
     }
 
     public List<Contact> readContacts() {
-
+    String namn = "Patricia Komstadius 070 123 45";
+    namn.split(" ");
         List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
