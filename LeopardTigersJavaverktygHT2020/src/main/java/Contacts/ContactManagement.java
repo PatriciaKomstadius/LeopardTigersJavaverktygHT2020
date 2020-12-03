@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ContactManagement {
 
-    private static ContactsIO io = new ContactsIO("Contactbook.txt");
+    private static ContactsIO io = new ContactsIO("ContactBook.txt");
     private static final ArrayList<Contact> contacts = new ArrayList<>(io.readContacts());
 
     public static ArrayList<Contact> getContacts() {

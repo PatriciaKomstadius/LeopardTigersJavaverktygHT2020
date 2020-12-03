@@ -5,21 +5,32 @@ import Contacts.Contact;
 import Contacts.ContactManagement;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 public class ContactsIO {
 
-    private String filepath;
+    private File contactsFile;
 
-    public ContactsIO(String filepath){
-        this.filepath=filepath;
+    public ContactsIO(String filepath) {
+
+        URL resource = getClass().getClassLoader().getResource(filepath);
+        if (resource==null){
+            throw new IllegalArgumentException("File " + filepath + " not found!");
+        }
+        try {
+            this.contactsFile = new File(resource.toURI());
+        } catch (URISyntaxException e){
+            e.printStackTrace();
+        }
     }
 
     public List<Contact> readContacts() {
 
         List<Contact> contacts = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(contactsFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] records = line.split(" ");
@@ -37,7 +48,7 @@ public class ContactsIO {
 
     public void writeContact(Contact contact) {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile, true))){
             writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
                                 contact.getNumber().replaceAll("\\s", "") + "\n");
         }catch (IOException e){
@@ -47,7 +58,7 @@ public class ContactsIO {
 
     public void reWriteContacts() {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile))){
             for (Contact contact : ContactManagement.getContacts()){
                     writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
                             contact.getNumber().replaceAll("\\s", "") + "\n");
@@ -59,9 +70,8 @@ public class ContactsIO {
 
     public void clearContacts(){
         try {
-            File contacts = new File(filepath);
-            if (contacts.delete()) {
-                contacts.createNewFile();
+            if (contactsFile.delete()) {
+                contactsFile.createNewFile();
             } else {
                 System.out.println("File deletion failed.");
             }
