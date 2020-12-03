@@ -41,14 +41,14 @@ public class ContactsIOTest {
         }
     }
 
-    /*
     @Test
     public void test_readContacts() throws IOException{
-        cIO.writeContact(testContact);
-        assertEquals((testContact.getFirstName() + " " + testContact.getLastName() + " " +
-                testContact.getNumber()), cIO.readContacts());
+        io.writeContact(testContact);
+        Contact contactOnFile=io.readContacts().get(0);
+        assertEquals(testContact.getFirstName()+testContact.getLastName()+testContact.getNumber(),
+                contactOnFile.getFirstName()+contactOnFile.getLastName()+contactOnFile.getNumber());
     }
-
+/*
     @Test
     public void test_removeContact_exception(){
         Contact contact = new Contact("a", "b", "0701234567");
