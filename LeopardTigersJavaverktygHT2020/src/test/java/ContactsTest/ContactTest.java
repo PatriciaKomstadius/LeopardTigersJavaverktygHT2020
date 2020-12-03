@@ -1,5 +1,6 @@
 package ContactsTest;
 
+
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import Contacts.Contact;
@@ -44,3 +45,5 @@ public class ContactTest {
         assertNotNull(contact.toString());
     }
 }
+
+
