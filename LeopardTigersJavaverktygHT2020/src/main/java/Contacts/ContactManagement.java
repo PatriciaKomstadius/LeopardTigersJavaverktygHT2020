@@ -45,13 +45,4 @@ public class ContactManagement {
         }
     }
 
-<<<<<<< HEAD
-
-    public static void saveContact(Contact c){
-
-        io.writeContact(c);
-    }
-
-=======
->>>>>>> 4e968bfdf95990439cb275d5f3bdb14efffd3f26
 }
