@@ -2,6 +2,7 @@
 package ContactsIO;
 
 import Contacts.Contact;
+import Contacts.ContactManagement;
 
 import java.io.*;
 import java.util.*;
@@ -15,8 +16,7 @@ public class ContactsIO {
     }
 
     public List<Contact> readContacts() {
-    String namn = "Patricia Komstadius 070 123 45";
-    namn.split(" ");
+
         List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
@@ -45,7 +45,15 @@ public class ContactsIO {
         }
     }
 
-    public void removeContact(Contact contact, String tempFilePath) {
+    public void reWriteContacts(Contact contactToDelete) {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath, true))){
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
         String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
                                     contact.getNumber().replaceAll("\\s", "");
         File originalFile = new File(filepath);

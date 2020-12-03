@@ -9,6 +9,10 @@ public class ContactManagement {
     private static ContactsIO io = new ContactsIO("Contactbook.txt");
     private static final ArrayList<Contact> contacts = new ArrayList<>(io.readContacts());
 
+    public static ArrayList<Contact> getContacts() {
+        return contacts;
+    }
+
     public static void showContacts() {
         for (Contact c : contacts) {
             System.out.println(c);
