@@ -15,15 +15,8 @@ public class ContactsIO {
 
     public ContactsIO(String filepath) {
 
-        URL resource = getClass().getClassLoader().getResource(filepath);
-        if (resource==null){
-            throw new IllegalArgumentException("File " + filepath + " not found!");
-        }
-        try {
-            this.contactsFile = new File(resource.toURI());
-        } catch (URISyntaxException e){
-            e.printStackTrace();
-        }
+        this.contactsFile=findResourcePath(filepath);
+
     }
 
     public List<Contact> readContacts() {
@@ -78,6 +71,20 @@ public class ContactsIO {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private File findResourcePath(String filepath){
+        URL resource = getClass().getClassLoader().getResource(filepath);
+        if (resource==null){
+            throw new IllegalArgumentException("File " + filepath + " not found!");
+        }
+        File contactFile=null;
+        try {
+            contactFile = new File(resource.toURI());
+        } catch (URISyntaxException e){
+            e.printStackTrace();
+        }
+        return contactFile;
     }
 
 }
