@@ -1,15 +1,18 @@
 package Main.Test;
 
-import Contacts.Contact;
 import Contacts.ContactManagement;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import Contacts.Contact;
+
+import Main.MainClass;
+
+
+import org.junit.jupiter.api.*;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -17,13 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MainClassTest {
 
-
-
-
     @Disabled
     @Test
     void testMenuInputMismatchexception() {
-        Main.MainClass main = new Main.MainClass();
+        MainClass main = new MainClass();
 
         String choice = "bad input";
 
@@ -35,54 +35,42 @@ public class MainClassTest {
         });
     }
 
-    @Before
-    void setUp() {
-
-    }
-
+    @DisplayName("Adding contact")
     @Test
-    void testAdd() {
-        Contact contact = new Contact("Testperson1", "1Efternamn", "12345");
-        Contact contact2 = new Contact("Testperson2", "2Efternamn", "23456");
+    void testAdd()  {
+       Contact contact = new Contact("Elena", "Nilsson", "1234");
         ContactManagement.addContact(contact);
-        ContactManagement.addContact(contact2);
-        assertEquals(2, ContactManagement.showContacts());
+       // assertNotNull(contact);
+        //assertEquals(1, ContactManagement.showContacts());
     }
 
-    @Test
-    void testDelete() {
-
-
-        Contact contact = new Contact("Testperson1", "1Efternamn", "12345");
-        Contact contact2 = new Contact("Testperson2", "2Efternamn", "23456");
-        ContactManagement.addContact(contact);
-        ContactManagement.addContact(contact2);
-
-        String deleteContact = "12345";
-        ContactManagement.removeContact(deleteContact);
-
-        assertEquals(1, ContactManagement.showContacts());
-
-    }
-
+    @DisplayName("Searching contact by first name")
     @Test
     void testSearchByFirstName() {
-        Contact contact = new Contact("Testperson2", "2Efternamn", "23456");
-
-        ContactManagement.addContact(contact);
-
-        assertEquals("Testperson2", contact.getFirstName());
+       Contact contact = new Contact("Nisse", "Ure", "8888");
+        String firstName = "Nisse";
+        ContactManagement.searchFirstName(firstName);
+        assertEquals("Nisse", contact.getFirstName());
     }
 
+    @DisplayName("Seaching contact by last name")
     @Test
     void testSearchByLastName() {
-        Contact contact = new Contact("Testperson2", "2Efternamn", "23456");
-
-        ContactManagement.addContact(contact);
-
-        assertEquals("Testperson2", contact.getLastName());
+       Contact contact = new Contact("Måns", "Sunesson", "4444");
+        String lastName = "Sunesson";
+        ContactManagement.searchFirstName(lastName);
+        assertEquals("Sunesson", contact.getLastName());
     }
+
+ /*
+    @DisplayName("Removing contact from contactbook")
+    @Test
+    void testRemove() {
+        String removeContact1 = "1234";
+        ContactManagement.removeContact(removeContact1);
+        assertEquals(1, ContactManagement.showContacts());
+    }
+
+  */
+
 }
-
-
-

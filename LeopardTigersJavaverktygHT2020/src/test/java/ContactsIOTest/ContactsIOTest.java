@@ -28,7 +28,7 @@ public class ContactsIOTest {
         cIO=new ContactsIO("TestContacts.txt");
         testContact = new Contact("John", "Doe", "0701234567");
     }
-
+/*
     @Test
     public void test_readContacts() throws IOException{
         cIO.writeContact(testContact);
@@ -48,4 +48,6 @@ public class ContactsIOTest {
         assertThrows(IOException.class, () -> cIO.removeContact(contact, "Tempfile.txt"));
         //Testa om det funkar med bara en felaktig kontakt
     }
+
+ */
 }
