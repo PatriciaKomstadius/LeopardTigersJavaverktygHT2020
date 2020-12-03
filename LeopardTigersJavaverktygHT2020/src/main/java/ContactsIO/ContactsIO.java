@@ -73,7 +73,7 @@ public class ContactsIO {
         }
     }
 
-    private File findResourcePath(String filepath){
+    public File findResourcePath(String filepath){
         URL resource = getClass().getClassLoader().getResource(filepath);
         if (resource==null){
             throw new IllegalArgumentException("File " + filepath + " not found!");
