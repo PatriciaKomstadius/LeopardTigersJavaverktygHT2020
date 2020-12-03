@@ -1,8 +1,5 @@
 //Hej Patricia! Om du ser detta, har du senaste versionen.
 
-<<<<<<< HEAD
-package Main;
-
 package Main;
 
 import Contacts.Contact;
