@@ -2,6 +2,7 @@
 package ContactsIO;
 
 import Contacts.Contact;
+import Contacts.ContactManagement;
 
 import java.io.*;
 import java.util.*;
@@ -15,8 +16,7 @@ public class ContactsIO {
     }
 
     public List<Contact> readContacts() {
-    String namn = "Patricia Komstadius 070 123 45";
-    namn.split(" ");
+
         List<Contact> contacts = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
@@ -45,31 +45,13 @@ public class ContactsIO {
         }
     }
 
-    public void removeContact(Contact contact, String tempFilePath) {
-        String contactToRemove = contact.getFirstName() + " " + contact.getLastName() + " " +
-                                    contact.getNumber().replaceAll("\\s", "");
-        File originalFile = new File(filepath);
-        File tempFile = new File(tempFilePath);
+    public void reWriteContacts() {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-            BufferedReader reader = new BufferedReader(new FileReader(originalFile));
-            ){
-
-            if (!tempFile.createNewFile()){
-                System.out.println("File creation failed.");
-            }
-            String line;
-            while ((line = reader.readLine()) != null){
-                if (!line.equals(contactToRemove)){
-                    writer.write(line + "\n");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))){
+            for (Contact contact : ContactManagement.getContacts()){
+                    writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
+                            contact.getNumber().replaceAll("\\s", "") + "\n");
                 }
-            }
-            if (!originalFile.delete()){
-                System.out.println("File deletion failed.");
-            }
-            if (!tempFile.renameTo(new File("ContactBook.txt"))) {
-                System.out.println("File update failed.");
-            }
         } catch (IOException e){
             e.printStackTrace();
         }
