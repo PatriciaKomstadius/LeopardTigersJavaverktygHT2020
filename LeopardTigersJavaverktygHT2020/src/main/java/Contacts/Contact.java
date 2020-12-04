@@ -15,16 +15,28 @@ public class Contact {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getNumber() {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+    
+
     @Override
     public String toString() {
-        return "\n" + firstName + " " + lastName + "  |Number|: " + number;
+        return "\nName: " + firstName + " " + lastName + " | Number: " + number;
     }
 }
