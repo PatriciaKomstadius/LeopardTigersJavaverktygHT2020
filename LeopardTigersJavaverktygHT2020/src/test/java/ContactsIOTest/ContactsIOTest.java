@@ -64,5 +64,12 @@ public class ContactsIOTest {
         });
     }
 
+    @Test
+    public void test_findResourcePath_illegalArgument(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            io.findResourcePath("badFile.txt");
+        });
+    }
+
 
     }
