@@ -58,7 +58,7 @@ public class ContactsIOTest {
     }
 
     @Test
-    public void test_readContact_illegalArgument(){
+    public void test_instantiate_illegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> {
             ContactsIO badFile = new ContactsIO("badFile.txt");
         });
