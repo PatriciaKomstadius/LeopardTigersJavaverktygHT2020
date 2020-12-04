@@ -4,9 +4,9 @@ package ContactsIOTest;
 import Contacts.Contact;
 import Contacts.ContactManagement;
 import ContactsIO.ContactsIO;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,20 +52,15 @@ public class ContactsIOTest {
         io.reWriteContacts();
         assertEquals(ContactManagement.getContacts(), io.readContacts());
         }
-    }
-/*
+
     @Test
-    public void test_removeContact_exception(){
-        Contact contact = new Contact("a", "b", "0701234567");
-        File tempFile = new File("TempFile.txt");
-        try{
-        if (!tempFile.createNewFile()){
-            System.out.println("File creation failed.");
-        }} catch (IOException e){
-        }
-        assertThrows(IOException.class, () -> cIO.removeContact(contact, "Tempfile.txt"));
-        //Testa om det funkar med bara en felaktig kontakt
+    public void test_writeContact_null(){
+        assertThrows(NullPointerException.class, () -> {
+            io.writeContact(null);
+        });
     }
 
- */
 
+
+
+    }
