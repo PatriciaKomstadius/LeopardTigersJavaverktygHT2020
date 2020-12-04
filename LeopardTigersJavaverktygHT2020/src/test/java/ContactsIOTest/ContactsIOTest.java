@@ -8,10 +8,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.NullSource;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -60,7 +57,12 @@ public class ContactsIOTest {
         });
     }
 
-
+    @Test
+    public void test_readContact_illegalArgument(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            ContactsIO badFile = new ContactsIO("badFile.txt");
+        });
+    }
 
 
     }
