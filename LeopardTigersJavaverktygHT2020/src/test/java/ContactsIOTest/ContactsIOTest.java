@@ -30,7 +30,9 @@ public class ContactsIOTest {
     }
 
     @AfterEach
-    public void resetTestContacts()
+    public void resetTestContacts(){
+        io.clearContacts();
+    }
 
     @Test
     public void test_readContacts() throws IOException{
