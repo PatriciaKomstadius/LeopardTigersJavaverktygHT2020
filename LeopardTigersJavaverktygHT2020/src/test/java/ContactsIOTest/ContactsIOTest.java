@@ -10,8 +10,7 @@ import org.junit.jupiter.params.provider.NullSource;
 
 import java.io.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactsIOTest {
 
@@ -30,11 +29,9 @@ public class ContactsIOTest {
         io.writeContact(testContact);
     }
 
-    @Test
-    public void test_writeContact() throws IOException{
-        try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))){
-            assertEquals("John Doe 0701234567", reader.readLine());
-        }
+    @AfterEach
+    public void resetTestContacts(){
+        io.clearContacts();
     }
 
     @Test
@@ -45,10 +42,24 @@ public class ContactsIOTest {
     }
 
     @Test
+    public void test_writeContact() throws IOException{
+        try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))){
+            assertEquals("John Doe 0701234567", reader.readLine());
+        }
+    }
+
+    @Test
     public void test_rewriteContacts(){
         io.reWriteContacts();
         assertEquals(ContactManagement.getContacts(), io.readContacts());
         }
+
+    @Test
+    public void test_clearContacts(){
+        assertEquals(1, io.readContacts().size());
+        io.clearContacts();
+        assertTrue(io.readContacts().isEmpty());
+    }
 
     @Test
     public void test_writeContact_null(){
