@@ -63,13 +63,6 @@ public class ContactsIOTest {
     }
 
     @Test
-    public void test_writeContact_null(){
-        assertThrows(NullPointerException.class, () -> {
-            io.writeContact(null);
-        });
-    }
-
-    @Test
     public void test_instantiate_illegalArgument(){
         assertThrows(IllegalArgumentException.class, () -> {
             ContactsIO badFile = new ContactsIO("badFile.txt");
@@ -96,5 +89,7 @@ public class ContactsIOTest {
     public void test_writeContact_nullSource(Contact contact){
         assertThrows(NullPointerException.class, () -> io.writeContact(contact));
     }
+
+
 
     }
