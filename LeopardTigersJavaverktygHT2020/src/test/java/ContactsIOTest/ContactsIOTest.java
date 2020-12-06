@@ -6,6 +6,7 @@ import Contacts.ContactManagement;
 import ContactsIO.ContactsIO;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 
 import java.io.*;
@@ -84,11 +85,16 @@ public class ContactsIOTest {
 
     @ParameterizedTest
     @NullSource
-    public void test_findResourcePath_illegalArgument_nullSource(String filepath){
+    public void test_findResourcePath_nullSource(String filepath){
         assertThrows(NullPointerException.class, () ->
                 io.findResourcePath(filepath)
         );
     }
 
+    @ParameterizedTest
+    @NullSource
+    public void test_writeContact_nullSource(Contact contact){
+        assertThrows(NullPointerException.class, () -> io.writeContact(contact));
+    }
 
     }
