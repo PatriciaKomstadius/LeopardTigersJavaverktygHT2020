@@ -13,10 +13,12 @@ public class ContactManagement {
         return contacts;
     }
 
-    public static void showContacts() {
+    //Gjorde så metoden returnerar int, hoppas det är OK!!
+    public static int showContacts() {
         for (Contact c : contacts) {
             System.out.println(c);
         }
+        return ContactManagement.contacts.size();
     }
 
     public static void addContact(Contact c) {
@@ -57,13 +59,9 @@ public class ContactManagement {
         }
     }
 
-<<<<<<< HEAD
-=======
-
     public static void saveContact(Contact c){
 
         io.writeContact(c);
     }
 
->>>>>>> feature
 }
