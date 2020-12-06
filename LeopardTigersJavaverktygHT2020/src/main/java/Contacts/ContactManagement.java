@@ -57,4 +57,13 @@ public class ContactManagement {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+    public static void saveContact(Contact c){
+
+        io.writeContact(c);
+    }
+
+>>>>>>> feature
 }
