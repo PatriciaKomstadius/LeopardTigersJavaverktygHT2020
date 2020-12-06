@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactManagementTest {
+    private Contact contact1 = new Contact("Jane", "Doe", "0707000070");
+    private Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
+    private Contact contact3 = new Contact("Youssef", "Al Shadidi", "0734567890");
 
     @Test
     @DisplayName("Show contacts")
     public void showContactsTest() {
-        Contact contact1 = new Contact("Jane", "Doe", "0707000070");
-        Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
 
         ContactManagement contactManagement = new ContactManagement();
         contactManagement.addContact(contact1);
@@ -33,19 +34,15 @@ public class ContactManagementTest {
     @Test
     @DisplayName("Add contacts")
     public void addContactTest() {
-        Contact contact3 = new Contact("Jane", "Doe", "0707000070");
-        Contact contact4 = new Contact("Joe", "Jenkins", "0123456789");
-        Contact contact5 = new Contact("Youssef", "Al Shadidi", "0734567890");
-
         ContactManagement contactManagement = new ContactManagement();
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
         contactManagement.addContact(contact3);
-        contactManagement.addContact(contact4);
-        contactManagement.addContact(contact5);
 
         List<Contact> addedContacts = new ArrayList<>();
+        addedContacts.add(contact1);
+        addedContacts.add(contact2);
         addedContacts.add(contact3);
-        addedContacts.add(contact4);
-        addedContacts.add(contact5);
 
         int foundContacts = contactManagement.showContacts();
 
@@ -57,23 +54,19 @@ public class ContactManagementTest {
     @Test
     @DisplayName("Remove contacts")
     public void removeContactTest() {
-        Contact contact6 = new Contact("Jane", "Doe", "0707000070");
-        Contact contact7 = new Contact("Joe", "Jenkins", "0123456789");
-        Contact contact8 = new Contact("Youssef", "Al Shadidi", "0734567890");
-
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact6);
-        contactManagement.addContact(contact7);
-        contactManagement.addContact(contact8);
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact3);
 
         contactManagement.removeContact("0734567890");
 
         int foundContacts = contactManagement.showContacts();
 
         List<Contact> addedContacts = new ArrayList<>();
-        addedContacts.add(contact6);
-        addedContacts.add(contact7);
-        addedContacts.add(contact8);
+        addedContacts.add(contact1);
+        addedContacts.add(contact2);
+        addedContacts.add(contact3);
 
         assertEquals(2, foundContacts);
         assertNotEquals(3, foundContacts);
