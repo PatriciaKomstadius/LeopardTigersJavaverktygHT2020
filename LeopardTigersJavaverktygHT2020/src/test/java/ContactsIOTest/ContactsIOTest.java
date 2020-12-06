@@ -19,58 +19,58 @@ public class ContactsIOTest {
     private Contact testContact;
 
     @BeforeAll
-    public static void message(){
+    public static void message() {
         System.out.println("Running ContactsIO tests...");
     }
 
     @BeforeEach
-    public void instantiateAndWrite(){
-        io=new ContactsIO("TestContacts.txt");
+    public void instantiateAndWrite() {
+        io = new ContactsIO("TestContacts.txt");
         testContact = new Contact("John", "Doe", "0701234567");
         io.writeContact(testContact);
     }
 
     @AfterEach
-    public void resetTestContacts(){
+    public void resetTestContacts() {
         io.clearContacts();
     }
 
     @Test
-    public void test_readContacts() throws IOException{
-        Contact contactOnFile=io.readContacts().get(0);
-        assertEquals(testContact.getFirstName()+testContact.getLastName()+testContact.getNumber(),
-                contactOnFile.getFirstName()+contactOnFile.getLastName()+contactOnFile.getNumber());
+    public void test_readContacts() throws IOException {
+        Contact contactOnFile = io.readContacts().get(0);
+        assertEquals(testContact.getFirstName() + testContact.getLastName() + testContact.getNumber(),
+                contactOnFile.getFirstName() + contactOnFile.getLastName() + contactOnFile.getNumber());
     }
 
     @Test
-    public void test_writeContact() throws IOException{
-        try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))){
+    public void test_writeContact() throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))) {
             assertEquals("John Doe 0701234567", reader.readLine());
         }
     }
 
     @Test
-    public void test_rewriteContacts(){
+    public void test_rewriteContacts() {
         io.reWriteContacts();
         assertEquals(ContactManagement.getContacts(), io.readContacts());
-        }
+    }
 
     @Test
-    public void test_clearContacts(){
+    public void test_clearContacts() {
         assertEquals(1, io.readContacts().size());
         io.clearContacts();
         assertTrue(io.readContacts().isEmpty());
     }
 
     @Test
-    public void test_instantiate_illegalArgument(){
+    public void test_instantiate_illegalArgument() {
         assertThrows(IllegalArgumentException.class, () -> {
             ContactsIO badFile = new ContactsIO("badFile.txt");
         });
     }
 
     @Test
-    public void test_findResourcePath_illegalArgument(){
+    public void test_findResourcePath_illegalArgument() {
         assertThrows(IllegalArgumentException.class, () -> {
             io.findResourcePath("badFile.txt");
         });
@@ -78,7 +78,7 @@ public class ContactsIOTest {
 
     @ParameterizedTest
     @NullSource
-    public void test_findResourcePath_nullSource(String filepath){
+    public void test_findResourcePath_nullSource(String filepath) {
         assertThrows(NullPointerException.class, () ->
                 io.findResourcePath(filepath)
         );
@@ -86,10 +86,9 @@ public class ContactsIOTest {
 
     @ParameterizedTest
     @NullSource
-    public void test_writeContact_nullSource(Contact contact){
+    public void test_writeContact_nullSource(Contact contact) {
         assertThrows(NullPointerException.class, () -> io.writeContact(contact));
     }
 
 
-
-    }
+}
