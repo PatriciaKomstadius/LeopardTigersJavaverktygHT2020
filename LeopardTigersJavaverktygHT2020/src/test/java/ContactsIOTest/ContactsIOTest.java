@@ -82,7 +82,13 @@ public class ContactsIOTest {
         });
     }
 
-
+    @ParameterizedTest
+    @NullSource
+    public void test_findResourcePath_illegalArgument_nullSource(String filepath){
+        assertThrows(NullPointerException.class, () ->
+                io.findResourcePath(filepath)
+        );
+    }
 
 
     }
