@@ -6,6 +6,7 @@ import Contacts.Contact;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class UserInput {
 
     private static Scanner scan = new Scanner(System.in);

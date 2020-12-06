@@ -28,6 +28,7 @@ public class UserInputTest {
     }
      */
 
+
     @DisplayName("Adding contact")
     @Test
     void testAdd()  {
