@@ -10,48 +10,74 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import Contacts.Contact;
 import Contacts.ContactManagement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactManagementTest {
 
     @Test
     @DisplayName("Show contacts")
     public void showContactsTest() {
-        Contact contact = new Contact("Jane", "Doe", "0707000070");
-        ContactManagement.addContact(contact);
+        Contact contact1 = new Contact("Jane", "Doe", "0707000070");
+        Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
 
-        assertAll("contact",
-                () -> assertEquals("Jane", contact.getFirstName()),
-                () -> assertEquals("Doe", contact.getLastName()),
-                () -> assertEquals("0707000070", contact.getNumber()),
+        ContactManagement contactManagement = new ContactManagement();
+        ContactManagement.addContact(contact1);
+        ContactManagement.addContact(contact2);
 
-                () -> assertNotEquals("Joe", contact.getFirstName()),
-                () -> assertNotEquals("Jenkins", contact.getLastName()),
-                () -> assertNotEquals("0123456789", contact.getNumber()),
-
-                () -> assertNotNull(contact)
-                );
+        assertEquals(2, contactManagement.showContacts());
     }
 
     @Test
     @DisplayName("Add contacts")
     public void addContactTest() {
-        Contact contact = new Contact("Jane", "Doe", "0707000070");
-        ContactManagement.addContact(contact);
+        Contact contact1 = new Contact("Jane", "Doe", "0707000070");
+        Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
+        Contact contact3 = new Contact("Youssef", "Al Shadidi", "0734567890");
 
-        assertTrue(contact.getFirstName().equals("Jane"));
-        assertTrue(contact.getLastName().equals("Doe"));
-        assertTrue(contact.getNumber().equals("0707000070"));
+        ContactManagement contactManagement = new ContactManagement();
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact3);
 
-        assertNotNull(contact);
+        List<Contact> addedContacts = new ArrayList<>();
+        addedContacts.add(contact1);
+        addedContacts.add(contact2);
+        addedContacts.add(contact3);
+
+        List<Contact> foundContacts = contactManagement.getContacts();
+
+        assertEquals(3, contactManagement.showContacts());
+        assertNotEquals(2, contactManagement.showContacts());
+        assertEquals(foundContacts, addedContacts);
+        assertArrayEquals(foundContacts.toArray(), addedContacts.toArray());
     }
 
     @Test
     @DisplayName("Remove contacts")
     public void removeContactTest() {
-        Contact contact = new Contact("Jane", "Doe", "0707000070");
-        ContactManagement.addContact(contact);
-        ContactManagement.removeContact("0707000070");
+        Contact contact1 = new Contact("Jane", "Doe", "0707000070");
+        Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
+        Contact contact3 = new Contact("Youssef", "Al Shadidi", "0734567890");
 
-        assertNull(contact);
+        ContactManagement contactManagement = new ContactManagement();
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact3);
+
+        contactManagement.removeContact("0734567890");
+
+        List<Contact> foundContacts = contactManagement.getContacts();
+
+        List<Contact> addedContacts = new ArrayList<>();
+        addedContacts.add(contact1);
+        addedContacts.add(contact2);
+        addedContacts.add(contact3);
+
+        assertEquals(2, foundContacts.size());
+        assertNotEquals(3, foundContacts.size());
+        assertNotEquals(addedContacts, foundContacts);
+
     }
 
     @Test
