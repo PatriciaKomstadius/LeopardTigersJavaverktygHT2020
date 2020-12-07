@@ -55,17 +55,16 @@ public class UserInput {
     }
 
     public static void menu() {
-        // while (loop) {
+
         System.out.println();
         System.out.println("========ContactBook========");
         System.out.println("1. Add contact");
         System.out.println("2. Delete contact");
         System.out.println("3. Search contact by last name");
         System.out.println("4. Search contact by first name");
-        System.out.println(".5. Show all contacts in contactbook");
+        System.out.println("5. Show all contacts in contactbook");
         System.out.println("0. Exit");
 
-        //   }
     }
 
     public static void add() {
@@ -113,6 +112,9 @@ public class UserInput {
         try {
             System.out.println("Enter your choice:");
             Integer input = scan.nextInt();
+            if (input == 0) {
+                System.exit(0);
+            }
             return input;
 
         } catch (InputMismatchException e) {
