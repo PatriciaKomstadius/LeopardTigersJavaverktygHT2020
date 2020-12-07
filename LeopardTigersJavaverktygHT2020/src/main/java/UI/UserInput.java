@@ -27,7 +27,7 @@ public class UserInput {
             } catch (InputMismatchException e) {
                 System.out.println("Wrong input, try again");
             }
-            // scan.nextLine();
+
             switch (number) {
                 case 0:
                     loop = false;

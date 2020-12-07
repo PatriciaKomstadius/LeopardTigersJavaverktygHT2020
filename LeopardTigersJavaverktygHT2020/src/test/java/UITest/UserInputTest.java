@@ -21,20 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserInputTest {
 
-    /*
-    @BeforeAll
-    void setUp() {
-        System.out.println("Setting up tests");
-    }
-     */
-
-
     @DisplayName("Adding contact")
     @Test
     void testAdd()  {
         Contact contact = new Contact("Elena", "Nilsson", "1234");
         ContactManagement.addContact(contact);
-        // assertNotNull(contact);
+
         assertEquals(1, ContactManagement.showContacts());
     }
 
@@ -61,6 +53,7 @@ public class UserInputTest {
 
         assertEquals("Femma", contact.getLastName());
     }
+
     @DisplayName("Verifying throws of InputMisMatchException")
     @Test
     void testReadInt() {
