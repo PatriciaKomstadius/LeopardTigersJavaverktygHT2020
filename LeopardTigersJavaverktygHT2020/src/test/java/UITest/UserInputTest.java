@@ -21,11 +21,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserInputTest {
 
+    @BeforeAll
+    static void init(){
+        System.out.println("Running tests..");
+    }
+
     @DisplayName("Adding contact")
     @Test
     void testAdd()  {
-        Contact contact = new Contact("Elena", "Nilsson", "1234");
-        ContactManagement.addContact(contact);
+        Contact contact = new Contact("Elena", "Mandela", "12345");
+        ContactManagement.addContact(contact, true);
 
         assertEquals(1, ContactManagement.showContacts());
     }
@@ -33,8 +38,8 @@ public class UserInputTest {
     @DisplayName("Removing contact from contactbook")
     @Test
     void testDelete() {
-        String deleteContact1 = "1234";
-        ContactManagement.removeContact(deleteContact1);
+        String deleteContact1 = "12345";
+        ContactManagement.removeContact(deleteContact1, true);
         assertEquals(0, ContactManagement.showContacts());
     }
 
