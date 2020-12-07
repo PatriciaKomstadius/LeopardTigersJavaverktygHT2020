@@ -12,6 +12,7 @@ public class ContactManagement {
     private static final Set<Contact> contacts = new HashSet<>(io.readContacts());
 
     public static Set<Contact> getContacts() {
+
         return contacts;
     }
 

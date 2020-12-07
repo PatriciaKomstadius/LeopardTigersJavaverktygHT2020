@@ -68,7 +68,7 @@ public class UserInput {
     }
 
     public static void add() {
-        System.out.println("Enter first name of contact: ");
+        System.out.println("Enter forename of contact: ");
         String firstName = scan.nextLine();
 
         System.out.println("Enter last name of contact: ");
@@ -84,24 +84,23 @@ public class UserInput {
     }
 
     public static void delete() {
-        System.out.print("Enter phone number of contact to delete: ");
+        System.out.print("Enter phone number to delete the contact: ");
         String number = scan.nextLine();
 
         ContactManagement.removeContact(number);
         Contacts.ContactManagement.removeContact(number, true);
 
-
     }
 
     public static void searchByFirstName() {
-        System.out.println("Enter name of contact to search for: ");
+        System.out.println("Enter forename: ");
         String firstName = scan.nextLine();
 
         ContactManagement.searchFirstName(firstName);
     }
 
     public static void searchByLastName() {
-        System.out.println("Enter name of contact to search for: ");
+        System.out.println("Enter last name: ");
         String lastName = scan.nextLine();
 
         ContactManagement.searchLastName(lastName);
