@@ -38,7 +38,7 @@ public class UserInputTest {
         assertEquals(0, ContactManagement.showContacts());
     }
 
-    @DisplayName("Search contact by first name")
+    @DisplayName("Searching by first name")
     @Test
     void testSearchByFirstName() {
         Contact contact = new Contact("Nisse", "Aro", "4444");
@@ -46,7 +46,7 @@ public class UserInputTest {
         assertEquals("Nisse", contact.getFirstName());
     }
 
-    @DisplayName("Seach contact by last name")
+    @DisplayName("Searching by last name")
     @Test
     void testSearchByLastName() {
         Contact contact = new Contact("Johanna", "Femma", "5555");
@@ -64,9 +64,9 @@ public class UserInputTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        assertThrows(InputMismatchException.class, () -> {
-            ui.readInt();
-        });
+        assertThrows(InputMismatchException.class, () ->
+            ui.readInt()
+        );
     }
 
 }
