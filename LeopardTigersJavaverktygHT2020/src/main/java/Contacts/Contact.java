@@ -1,5 +1,7 @@
 package Contacts;
 
+import java.util.Objects;
+
 public class Contact {
     private String firstName;
     private String lastName;
@@ -33,10 +35,22 @@ public class Contact {
     public void setNumber(String number) {
         this.number = number;
     }
-    
+
 
     @Override
     public String toString() {
         return "\nName: " + firstName + " " + lastName + " | Number: " + number;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Contacts.Contact contact = (Contacts.Contact) o;
+        return this.number.equals(contact.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
+
 }

@@ -3,13 +3,15 @@ package Contacts;
 import ContactsIO.ContactsIO;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ContactManagement {
 
     private static ContactsIO io = new ContactsIO("ContactBook.txt");
-    private static final ArrayList<Contact> contacts = new ArrayList<>(io.readContacts());
+    private static final Set<Contact> contacts = new HashSet<>(io.readContacts());
 
-    public static ArrayList<Contact> getContacts() {
+    public static Set<Contact> getContacts() {
         return contacts;
     }
 
@@ -18,7 +20,7 @@ public class ContactManagement {
         for (Contact c : contacts) {
             System.out.println(c);
         }
-        return ContactManagement.contacts.size();
+        return Contacts.ContactManagement.contacts.size();
     }
 
     public static void addContact(Contact c) {
@@ -28,7 +30,7 @@ public class ContactManagement {
     public static void addContact(Contact c, boolean writeToFile) {
         contacts.add(c);
         if (writeToFile){
-        io.writeContact(c);
+            io.writeContact(c);
         }
     }
 
