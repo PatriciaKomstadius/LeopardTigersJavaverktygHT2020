@@ -11,6 +11,20 @@ public class UserInput {
 
     private static Scanner scan = new Scanner(System.in);
 
+
+    public static void menu() {
+
+        System.out.println();
+        System.out.println("========ContactBook========");
+        System.out.println("1. Add contact");
+        System.out.println("2. Delete contact");
+        System.out.println("3. Search contact by forname");
+        System.out.println("4. Search contact by last name");
+        System.out.println("5. Show all contacts in contactbook");
+        System.out.println("0. Exit");
+
+    }
+
     public static void menuChoice() {
 
         Integer number = 0;
@@ -52,19 +66,6 @@ public class UserInput {
                     break;
             }
         }
-    }
-
-    public static void menu() {
-
-        System.out.println();
-        System.out.println("========ContactBook========");
-        System.out.println("1. Add contact");
-        System.out.println("2. Delete contact");
-        System.out.println("3. Search contact by last name");
-        System.out.println("4. Search contact by first name");
-        System.out.println("5. Show all contacts in contactbook");
-        System.out.println("0. Exit");
-
     }
 
     public static void add() {
