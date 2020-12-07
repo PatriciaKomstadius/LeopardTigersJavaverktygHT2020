@@ -68,10 +68,10 @@ public class UserInput {
     }
 
     public static void add() {
-        System.out.println("Enter forename of contact: ");
+        System.out.println("Enter forename: ");
         String firstName = scan.nextLine();
 
-        System.out.println("Enter last name of contact: ");
+        System.out.println("Enter last name: ");
         String lastName = scan.nextLine();
 
         System.out.println("Enter phone number: ");
@@ -84,7 +84,7 @@ public class UserInput {
     }
 
     public static void delete() {
-        System.out.print("Enter phone number to delete the contact: ");
+        System.out.print("Enter phone number to delete contact: ");
         String number = scan.nextLine();
 
         ContactManagement.removeContact(number);
