@@ -90,5 +90,9 @@ public class ContactsIOTest {
         assertThrows(NullPointerException.class, () -> io.writeContact(contact));
     }
 
+    @AfterAll
+    public static void endMessage(){
+        System.out.println("ContactsIO tests completed.");
+    }
 
 }
