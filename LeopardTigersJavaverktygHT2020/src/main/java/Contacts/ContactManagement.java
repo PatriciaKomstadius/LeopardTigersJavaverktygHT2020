@@ -29,9 +29,10 @@ public class ContactManagement {
     }
 
     public static void addContact(Contact c, boolean writeToFile) {
-        contacts.add(c);
-        if (writeToFile){
-            io.writeContact(c);
+        if (contacts.add(c)) {
+            if (writeToFile) {
+                io.writeContact(c);
+            }
         }
     }
 
@@ -40,9 +41,10 @@ public class ContactManagement {
     }
 
     public static void removeContact(String number, boolean removeFromFile) {
-        contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number));
-        if (removeFromFile) {
-            io.reWriteContacts();
+        if (contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number))) {
+            if (removeFromFile) {
+                io.reWriteContacts();
+            }
         }
     }
 
