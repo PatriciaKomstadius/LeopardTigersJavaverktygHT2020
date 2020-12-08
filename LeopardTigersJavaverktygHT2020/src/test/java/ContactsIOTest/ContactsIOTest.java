@@ -37,7 +37,7 @@ public class ContactsIOTest {
 
     @Test
     public void test_readContacts() throws IOException {
-        Contact contactOnFile = io.readContacts().get(0);
+        Contact contactOnFile = io.readContacts().iterator().next();
         assertEquals(testContact.getFirstName() + testContact.getLastName() + testContact.getNumber(),
                 contactOnFile.getFirstName() + contactOnFile.getLastName() + contactOnFile.getNumber());
     }
@@ -45,7 +45,7 @@ public class ContactsIOTest {
     @Test
     public void test_writeContact() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))) {
-            assertEquals("John Doe 0701234567", reader.readLine());
+            assertEquals("John, Doe, 0701234567", reader.readLine());
         }
     }
 

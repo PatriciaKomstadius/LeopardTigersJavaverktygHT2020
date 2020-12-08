@@ -19,9 +19,9 @@ public class ContactsIO {
 
     }
 
-    public List<Contact> readContacts() {
+    public Set<Contact> readContacts() {
 
-        List<Contact> contacts = new ArrayList<>();
+        Set<Contact> contacts = new HashSet<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(contactsFile))) {
             String line;
@@ -52,9 +52,10 @@ public class ContactsIO {
     public void reWriteContacts() {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile))){
-            for (Contact contact : ContactManagement.getContacts()){
-                    writer.write(contact.getFirstName() + ", " + contact.getLastName() + ", " +
-                            contact.getNumber().replaceAll("\\s", "") + "\n");
+            Iterator<Contact> it = ContactManagement.getContacts().iterator();
+            while (it.hasNext()){
+                    writer.write(it.next().getFirstName() + ", " + it.next().getLastName() + ", " +
+                            it.next().getNumber().replaceAll("\\s", "") + "\n");
                 }
         } catch (IOException e){
             e.printStackTrace();
