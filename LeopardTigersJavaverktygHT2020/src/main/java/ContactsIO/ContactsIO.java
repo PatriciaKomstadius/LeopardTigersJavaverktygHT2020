@@ -26,7 +26,7 @@ public class ContactsIO {
         try (BufferedReader reader = new BufferedReader(new FileReader(contactsFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] records = line.split(" ");
+                String[] records = line.split(", ");
                 String firstName = records[0];
                 String lastName = records[1];
                 String phoneNumber = records[2];
@@ -42,7 +42,7 @@ public class ContactsIO {
     public void writeContact(Contact contact) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile, true))){
-            writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
+            writer.write(contact.getFirstName() + ", " + contact.getLastName() + ", " +
                                 contact.getNumber().replaceAll("\\s", "") + "\n");
         }catch (IOException e){
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class ContactsIO {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile))){
             for (Contact contact : ContactManagement.getContacts()){
-                    writer.write(contact.getFirstName() + " " + contact.getLastName() + " " +
+                    writer.write(contact.getFirstName() + ", " + contact.getLastName() + ", " +
                             contact.getNumber().replaceAll("\\s", "") + "\n");
                 }
         } catch (IOException e){
