@@ -1,6 +1,7 @@
 package ContactsTest;
 
 
+import Contacts.ContactManagement;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import Contacts.Contact;
@@ -79,6 +80,19 @@ public class ContactTest {
                 " " + contact.getLastName() + " | Number: " + contact.getNumber()));
 
         assertNotNull(contact.toString());
+    }
+
+    @Test
+    @DisplayName("Equals")
+    public void HashEquals() {
+        Contact contact = new Contact("Nika", "Arya", "0734567890");
+        Contact contact2 = new Contact("Lisa", "Nilsson", "0734567890");
+
+        ContactManagement.addContact(contact);
+        ContactManagement.addContact(contact2);
+
+        assertEquals(1, ContactManagement.showContacts());
+
     }
 }
 
