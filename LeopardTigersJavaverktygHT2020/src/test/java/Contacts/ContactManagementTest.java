@@ -1,13 +1,10 @@
-package ContactsTest;
+package Contacts;
 
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.*;
-
-import Contacts.Contact;
-import Contacts.ContactManagement;
 
 import java.util.ArrayList;
 import java.util.List;
