@@ -7,17 +7,15 @@ import UI.UserInput;
 
 
 import org.junit.jupiter.api.*;
-
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.InputMismatchException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserInputTest {
 
@@ -30,7 +28,7 @@ public class UserInputTest {
     @Test
     void testAdd()  {
         Contact contact = new Contact("Elena", "Mandela", "12345");
-        ContactManagement.addContact(contact, true);
+        ContactManagement.addContact(contact,  true);
 
         assertEquals(1, ContactManagement.showContacts());
     }
@@ -46,17 +44,17 @@ public class UserInputTest {
     @DisplayName("Searching by first name")
     @Test
     void testSearchByFirstName() {
-        Contact contact = new Contact("Nisse", "Aro", "4444");
+        Contact contact = new Contact("Femman", "Johansson", "5555");
 
-        assertEquals("Nisse", contact.getFirstName());
+        assertEquals("Femman", contact.getFirstName());
     }
 
     @DisplayName("Searching by last name")
     @Test
     void testSearchByLastName() {
-        Contact contact = new Contact("Johanna", "Femma", "5555");
+        Contact contact = new Contact("Johan", "Fyrson", "4444");
 
-        assertEquals("Femma", contact.getLastName());
+        assertEquals("Fyrson", contact.getLastName());
     }
 
     @DisplayName("Verifying throws of InputMisMatchException")
@@ -64,7 +62,7 @@ public class UserInputTest {
     void testReadInt() {
         UserInput ui = new UserInput();
 
-        String input = "sending a textmessage instead of Integer input";
+        String input = "input string instead of Integer";
 
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

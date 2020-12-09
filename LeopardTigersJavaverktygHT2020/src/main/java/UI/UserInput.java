@@ -110,7 +110,7 @@ public class UserInput {
     public static int readInt(){
         Scanner scan = new Scanner(System.in);
         try {
-            System.out.println("Enter your choice:");
+            System.out.println("Enter your choice (Press 0 to quit):");
             Integer input = scan.nextInt();
             if (input == 0) {
                 System.exit(0);
