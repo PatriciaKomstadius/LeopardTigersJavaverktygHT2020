@@ -1,9 +1,8 @@
-package ContactsTest;
+package Contacts;
 
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import Contacts.Contact;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;

@@ -1,9 +1,7 @@
-package UITest;
+package UI;
 
 import Contacts.ContactManagement;
 import Contacts.Contact;
-
-import UI.UserInput;
 
 
 import org.junit.jupiter.api.*;
