@@ -16,7 +16,7 @@ public class ContactManagement {
         return contacts;
     }
 
-    //Gjorde så metoden returnerar int, hoppas det är OK!!
+
     public static int showContacts() {
         for (Contact c : contacts) {
             System.out.println(c);

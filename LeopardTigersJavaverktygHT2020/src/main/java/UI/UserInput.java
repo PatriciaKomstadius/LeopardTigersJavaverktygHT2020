@@ -79,7 +79,7 @@ public class UserInput {
         String number = scan.nextLine();
 
         Contact c = new Contact(firstName, lastName, number);
-        //ContactManagement.addContact(c);
+
         Contacts.ContactManagement.addContact(c, true);
 
     }
@@ -88,7 +88,7 @@ public class UserInput {
         System.out.print("Enter phone number to delete contact: ");
         String number = scan.nextLine();
 
-      //  ContactManagement.removeContact(number);
+
         Contacts.ContactManagement.removeContact(number, true);
 
     }
