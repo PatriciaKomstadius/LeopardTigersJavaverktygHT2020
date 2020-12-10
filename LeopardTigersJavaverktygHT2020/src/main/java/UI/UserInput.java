@@ -69,7 +69,7 @@ public class UserInput {
     }
 
     public static void add() {
-        System.out.println("Enter forename: ");
+        System.out.println("Enter first name: ");
         String firstName = scan.nextLine();
 
         System.out.println("Enter last name: ");
@@ -94,7 +94,7 @@ public class UserInput {
     }
 
     public static void searchByFirstName() {
-        System.out.println("Enter forename: ");
+        System.out.println("Enter first name: ");
         String firstName = scan.nextLine();
 
         ContactManagement.searchFirstName(firstName);
