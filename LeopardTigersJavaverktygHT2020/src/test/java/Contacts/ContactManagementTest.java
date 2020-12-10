@@ -18,8 +18,8 @@ public class ContactManagementTest {
         Contact contact2 = new Contact("Joe", "Jenkins", "0123456789");
 
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact1, false);
-        contactManagement.addContact(contact2, false);
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
 
         int foundContacts = contactManagement.showContacts();
 
@@ -34,9 +34,9 @@ public class ContactManagementTest {
         Contact contact3 = new Contact("Youssef", "Al Shadidi", "0734567890");
 
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact1, false);
-        contactManagement.addContact(contact2, false);
-        contactManagement.addContact(contact3, false);
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact3);
 
         List<Contact> addedContacts = new ArrayList<>();
         addedContacts.add(contact1);
@@ -58,9 +58,9 @@ public class ContactManagementTest {
         Contact contact3 = new Contact("Youssef", "Al Shadidi", "0734567890");
 
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact1, false);
-        contactManagement.addContact(contact2, false);
-        contactManagement.addContact(contact3, false);
+        contactManagement.addContact(contact1);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact3);
 
         contactManagement.removeContact("0734567890");
 
@@ -83,7 +83,7 @@ public class ContactManagementTest {
         Contact contact1 = new Contact("Jane", "Doe", "0707000070");
 
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact1, false);
+        contactManagement.addContact(contact1);
 
         assertTrue(contact1.getFirstName().equals("Jane"));
         assertNotEquals("Joe", contact1.getFirstName());
@@ -96,7 +96,7 @@ public class ContactManagementTest {
         Contact contact1 = new Contact("Jane", "Doe", "0707000070");
 
         ContactManagement contactManagement = new ContactManagement();
-        contactManagement.addContact(contact1, false);
+        contactManagement.addContact(contact1);
 
         assertTrue(contact1.getLastName().equals("Doe"));
         assertNotEquals("Jenkins", contact1.getLastName());
