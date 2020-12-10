@@ -52,11 +52,10 @@ public class ContactsIO {
     public void reWriteContacts() {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile))){
-            Iterator<Contact> it = ContactManagement.getContacts().iterator();
-            while (it.hasNext()){
-                    writer.write(it.next().getFirstName() + ", " + it.next().getLastName() + ", " +
-                            it.next().getNumber().replaceAll("\\s", "") + "\n");
-                }
+            for (Contact contact : ContactManagement.getContacts()) {
+                writer.write(contact.getFirstName() + ", " + contact.getLastName() + ", " +
+                        contact.getNumber().replaceAll("\\s", "") + "\n");
+            }
         } catch (IOException e){
             e.printStackTrace();
         }
