@@ -28,7 +28,7 @@ public class UserInputTest {
     @Test
     void testAdd()  {
         Contact contact = new Contact("Elena", "Mandela", "12345");
-        ContactManagement.addContact(contact, true);
+        ContactManagement.addContact(contact);
 
         assertEquals(1, ContactManagement.showContacts());
     }
@@ -37,7 +37,7 @@ public class UserInputTest {
     @Test
     void testDelete() {
         String deleteContact1 = "12345";
-        ContactManagement.removeContact(deleteContact1, true);
+        ContactManagement.removeContact(deleteContact1);
         assertEquals(0, ContactManagement.showContacts());
     }
 
