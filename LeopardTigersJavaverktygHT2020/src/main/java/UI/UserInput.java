@@ -21,9 +21,8 @@ public class UserInput {
         System.out.println("========ContactBook========");
         System.out.println("1. Add contact");
         System.out.println("2. Delete contact");
-        System.out.println("3. Search contact by forname");
-        System.out.println("4. Search contact by last name");
-        System.out.println("5. Show all contacts in contactbook");
+        System.out.println("3. Search for contact");
+        System.out.println("4. Show all contacts in contactbook");
         System.out.println("0. Exit");
 
     }
@@ -34,12 +33,12 @@ public class UserInput {
         boolean loop = true;
 
         while (loop) {
-            UserInput ui = new UserInput();
+            //   UserInput ui = new UserInput();
 
             try {
                 number = readInt();
 
-                loop=false;
+                loop = false;
 
             } catch (InputMismatchException e) {
                 System.out.println("Wrong input, try again");
@@ -53,22 +52,16 @@ public class UserInput {
                     add();
                     break;
                 case 2:
-                    delete();
+                    //delete();
+                    searchAndDelete();
                     break;
                 case 3:
-                    searchByFirstName();
-                    break;
-                case 4:
-                    searchByLastName();
-                    break;
-                case 5:
-                    ContactManagement.showContacts();
-                    break;
-                case 6:
+                    //searchByFirstName();
                     consoleSearch();
                     break;
-                case 7:
-                    searchAndDelete();
+                case 4:
+                    //searchByLastName();
+                    ContactManagement.showContacts();
                     break;
                 default:
                     System.out.println("Please choose one of the options listed above.");
@@ -77,77 +70,71 @@ public class UserInput {
         }
     }
 
-    public static void add() {
+    public static String add() {
 
-           System.out.println("Enter first name: ");
-           String firstName = scan.nextLine();
+        System.out.println("Enter first name: ");
+        String firstName = scan.nextLine();
 
-           System.out.println("Enter last name: ");
-           String lastName = scan.nextLine();
+        System.out.println("Enter last name: ");
+        String lastName = scan.nextLine();
 
-           System.out.println("Enter phone number: ");
-           String number = scan.nextLine();
+        System.out.println("Enter phone number: ");
+        String number = scan.nextLine();
 
-           Contact c = null;
+        Contact c = null;
 
-           try {
+        try {
+            c = new Contact(firstName, lastName, number);
 
-               c = new Contact(firstName, lastName, number);
+            if (number.length() < 8) {
+                System.out.println("Number is too short. Please enter a number of minimum 8 digits");
 
-           } catch (Exception e) {
-               System.out.println("Could not instantiate this contact. Details: " +e);
-           }
+            }
+            if (number.length() >= 8) {
+                Contacts.ContactManagement.addContact(c, true);
 
-           try {
+            }
 
-               if (c != null) {
-                   Contacts.ContactManagement.addContact(c, true);
-
-               } else {
-                   System.out.println("There is no contact to save");
-               }
-
-       } catch (Exception e) {
-
-           System.out.println("Sorry, could not save the contact. Details: " +e);
-
-       }
+        } catch (Exception e) {
+            System.out.println("Sorry, could not save the contact. Details: " + e);
+        }
+        return number;
     }
 
-    public static void delete() {
 
+    /*
+    public static void delete() {
 
         System.out.print("Enter phone number to delete contact: ");
         String number = scan.nextLine();
 
-
         Contacts.ContactManagement.removeContact(number, true);
-
     }
+    */
 
     public static void consoleSearch() {
 
         System.out.println("Enter your search term: ");
         Scanner scan = new Scanner(System.in);
-
         String value = scan.nextLine();
 
+//skapar en lista som innehåller det metoden search i ContactManagement hittar genom att söka efter angivet värde
         List<Contact> result = search(value);
 
+        //går igenom hela listan av värden som hittats i search, skapa en instans av Contact som är lika med det som hittats i result för utskrift
         for (int i = 0; i < result.size(); i++) {
             Contact c = result.get(i);
             System.out.println(c.getFirstName() + " " + c.getLastName() + " " + c.getNumber());
+            //skriver ut namn och nummer till träffarna
         }
     }
 
     //TEST JUNIT
-    public static void searchAndDelete() {
+    public static boolean searchAndDelete() {
 
         System.out.println("Search for the contact you want to delete: ");
         Scanner scan = new Scanner(System.in);
-
         String value = scan.nextLine();
-
 
         List<Contact> result = search(value);
 
@@ -157,12 +144,32 @@ public class UserInput {
                 Contact c = result.get(i);
                 System.out.println(i + " " + c.getFirstName() + " " + c.getLastName() + " " + c.getNumber());
             }
-            System.out.println("Select the index of the contact you want to delete: ");
 
-            int indexNr = scan.nextInt();
-            scan.nextLine();
+            int indexNr = 0;
+            boolean loop = true;
+
+            while (loop) {
+
+
+                try {
+                    indexNr = readInt2();
+
+                    if (indexNr > result.size()) {
+                        System.out.println("Too many digits. Enter index of the contact to delete");
+                    }
+                    else {
+                    loop = false;
+                    }
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: You need to enter a digit");
+                }
+            }
+
+            //skapar en instans av Contact som innehåller kontakter samt indexnr
             Contact selectedContact = result.get(indexNr);
-            System.out.println("Selected contact:" + selectedContact.getFirstName() + selectedContact.getLastName());
+
+            System.out.println("Selected contact:" + selectedContact.getFirstName() + " " + selectedContact.getLastName());
             System.out.println("Would you like to delete this contact? (y/n)");
 
             String input = scan.nextLine();
@@ -171,30 +178,33 @@ public class UserInput {
 
                 case "y":
                     try {
-                        ContactManagement.removeContact(selectedContact.getNumber());
+                        ContactManagement.removeContact(selectedContact.getNumber(), true);
                         System.out.println("Contact has been deleted");
+                        return true;
+
                     } catch (Exception e) {
                         System.out.println("Error: Contact was not deleted. Details: " + e);
                     }
-
                     break;
                 case "n":
                     System.out.println("Contact deletion was cancelled.");
                     break;
                 default:
+                    System.out.println("Invalid input. You're being redirected back to menu.");
                     break;
             }
 
         } else {
-
             System.out.println("No contacts found.");
 
         }
 
+
+        return false;
     }
 
 
-
+/*
     public static void searchByFirstName() {
         System.out.println("Enter first name: ");
         String firstName = scan.nextLine();
@@ -209,7 +219,9 @@ public class UserInput {
         ContactManagement.searchLastName(lastName);
     }
 
-    public static int readInt(){
+ */
+
+    public static int readInt() {
         Scanner scan = new Scanner(System.in);
         try {
             System.out.println("Enter your choice (Press 0 to quit):");
@@ -217,6 +229,20 @@ public class UserInput {
             if (input == 0) {
                 System.exit(0);
             }
+            return input;
+
+        } catch (InputMismatchException e) {
+            throw new InputMismatchException("Wrong input, please try again.");
+        }
+    }
+
+    public static int readInt2() {
+        Scanner scan = new Scanner(System.in);
+        try {
+            System.out.println("Select the index of the contact you want to delete: ");
+            //  System.out.println("Enter your choice (Press 0 to quit):");
+            Integer input = scan.nextInt();
+
             return input;
 
         } catch (InputMismatchException e) {

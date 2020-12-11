@@ -34,6 +34,7 @@ public class ContactManagement {
         }
     }
 
+
     public static void removeContact(String number) {
         contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number));
     }
