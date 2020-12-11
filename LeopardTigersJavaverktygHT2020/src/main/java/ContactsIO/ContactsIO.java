@@ -15,7 +15,7 @@ public class ContactsIO {
 
     public ContactsIO(String filepath) {
 
-        this.contactsFile=findResourcePath(filepath);
+        this.contactsFile=new File(filepath);
 
     }
 
