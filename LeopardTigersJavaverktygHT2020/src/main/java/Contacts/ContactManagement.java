@@ -2,9 +2,7 @@ package Contacts;
 
 import ContactsIO.ContactsIO;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ContactManagement {
 
@@ -48,6 +46,7 @@ public class ContactManagement {
         }
     }
 
+
     public static void searchFirstName(String firstName) {
         for (Contact c : contacts) {
             if (c.getFirstName().equalsIgnoreCase(firstName)) {
@@ -63,5 +62,23 @@ public class ContactManagement {
             }
         }
     }
+
+    //TEST JUNIT
+    public static List<Contact> search(String value) {
+
+        List<Contact> result = new ArrayList<Contact>();
+
+        for (Contact c : contacts) {
+
+            String contact = c.getFirstName() + " " + c.getLastName() + " " + c.getNumber();
+
+            if (contact.toLowerCase().contains(value.toLowerCase())) {
+                result.add(c);
+            }
+        }
+        return result;
+    }
+
+
 
 }
