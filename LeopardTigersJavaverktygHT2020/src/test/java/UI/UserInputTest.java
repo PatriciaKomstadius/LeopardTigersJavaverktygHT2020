@@ -92,16 +92,26 @@ public class UserInputTest {
     }
 
 
+    @DisplayName("Checking if number to contact is more than 8 digits")
     @Test
-    void testAddThrows() {
+    void testCheckNumber(){
+
         UserInput ui = new UserInput();
 
-        String input = "5";
+        String number = "12345678";
 
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
+        assertTrue(ui.checkNumber(number) == true);
+    }
 
-        assertThrows(Exception.class, () -> ui.add());
+
+    @Test
+    void testVerifyExceptionThrows() {
+
+        UserInput ui = new UserInput();
+
+        String input = null;
+
+        assertThrows(Exception.class, () -> ui.checkNumber(input));
 
     }
 
@@ -117,22 +127,6 @@ public class UserInputTest {
         assertThrows(Exception.class, () -> ui.add());
     }
 
-
-    @Disabled
-    @Test
-    void testVerifyExceptionThrows() {
-
-        UserInput ui = new UserInput();
-
-        String input = null;
-
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-
-        System.setIn(in);
-
-        assertThrows(Exception.class, () -> ui.add());
-
-    }
 
 
 }

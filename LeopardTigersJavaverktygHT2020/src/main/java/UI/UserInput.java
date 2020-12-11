@@ -62,7 +62,19 @@ public class UserInput {
         }
     }
 
-    public static int add() {
+    public static boolean checkNumber(String number) {
+
+        try {
+            if (number == null || number.length() >= 8) {
+                return true;
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Wrong input, try again.");
+        }
+        return false;
+    }
+
+    public static void add() {
 
         System.out.println("Enter first name: ");
         String firstName = scan.nextLine();
@@ -70,35 +82,29 @@ public class UserInput {
         System.out.println("Enter last name: ");
         String lastName = scan.nextLine();
 
-        //  Contact c = null;
         boolean loop = true;
-        String number = null;
 
         while (loop) {
             System.out.println("Enter phone number: ");
-            number = scan.nextLine();
+            String number = scan.nextLine();
 
             try {
 
-                if (number.length() < 8) {
+                if (checkNumber(number) == true) {
 
-                    System.out.println("The number is too short. Please enter a number of minimum 8 digits");
+                    loop = false;
+                    Contact c = new Contact(firstName, lastName, number);
+                    Contacts.ContactManagement.addContact(c, true);
+                    System.out.println("Contact saved.");
 
                 } else {
-                    loop = false;
+                        System.out.println("The number is too short. Please enter a number of minimum 8 digits");
 
-                    Contact c = new Contact(firstName, lastName, number);
-
-                    Contacts.ContactManagement.addContact(c, true);
-
-                    System.out.println("Contact saved.");
                 }
-
             } catch (Exception e) {
-                throw new IllegalArgumentException("Sorry, could not save the contact. Details: " + e);
+                System.out.println("Sorry, could not save the contact. Details: " + e);
             }
         }
-        return number.length();
     }
 
     public static void consoleSearch() {
@@ -139,7 +145,7 @@ public class UserInput {
                     indexNr = readIntForSearchAndDelete();
 
                     if (indexNr > result.size()) {
-                        System.out.println("Too many digits. Enter index of the contact to delete");
+                        System.out.println("Error in index input: Enter index of the contact to delete");
 
                     } else {
                         loop = false;
