@@ -42,7 +42,7 @@ public class ContactsIOTest {
 
     @Test
     public void test_writeContact() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("TestContacts.txt")))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(io.findJarPath("TestContacts.txt")))) {
             assertEquals("John, Doe, 0701234567", reader.readLine());
         }
     }
@@ -58,13 +58,6 @@ public class ContactsIOTest {
         assertEquals(1, io.readContacts().size());
         io.clearContacts();
         assertTrue(io.readContacts().isEmpty());
-    }
-
-    @Test
-    public void test_instantiate_illegalArgument() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            ContactsIO badFile = new ContactsIO("badFile.txt");
-        });
     }
 
     @Test
