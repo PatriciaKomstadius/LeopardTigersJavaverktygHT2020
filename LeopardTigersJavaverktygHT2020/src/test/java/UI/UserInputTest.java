@@ -103,31 +103,15 @@ public class UserInputTest {
         assertTrue(ui.checkNumber(number) == true);
     }
 
-
+    @DisplayName("Verifying throws of null numbers")
     @Test
     void testVerifyExceptionThrows() {
-
         UserInput ui = new UserInput();
 
         String input = null;
 
         assertThrows(Exception.class, () -> ui.checkNumber(input));
-
     }
-
-    @Disabled
-    @Test
-    void verifyingAdd() {
-
-        UserInput ui = new UserInput();
-        Contact input = new Contact("Ebba", "Grön", "4004");
-
-        String number = "5";
-
-        assertThrows(Exception.class, () -> ui.add());
-    }
-
-
 
 }
 
