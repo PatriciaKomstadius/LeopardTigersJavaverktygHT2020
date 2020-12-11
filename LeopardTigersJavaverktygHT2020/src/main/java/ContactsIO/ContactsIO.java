@@ -15,7 +15,8 @@ public class ContactsIO {
 
     public ContactsIO(String filepath) {
 
-        this.contactsFile=new File(filepath);
+        String absolutePath = new File(filepath).getAbsolutePath();
+        this.contactsFile=new File(absolutePath);
 
     }
 
