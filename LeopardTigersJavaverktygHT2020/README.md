@@ -16,13 +16,12 @@ INSTRUKTIONER FÖR PROGRAMMET UTAN IDE:
 - Lägg den nya mappen på C:
 - Ställ in miljövariabler genom att ange sökväg till mappen med bin under "New Path" samt sökväg till mappen utan bin som MAVEN_HOME variabel. 
 - Öppna sedan terminalen på datorn
-- Skriv mvn --version för att säkerställa att du har en maven-version korrekt installerad.
-- Sedan öppnar man terminalen, skriver mvn compile så att target-mappen dyker upp. Mvn package paketerar projektet åt en och mvn test kör testerna. 
+- Skriv mvn --version för att säkerställa att du har en maven-version korrekt installerad. 
 
-- Stå i mappen för programmet
 - Öppna terminalen
-- Kompilera programmet genom att skriva javac Main.java
-- Kör programmet genom att ange: java -jar /sökväg/till/jar/target/LeopardTigersJavaverktygHT2020-1.0-SNAPSHOT.jar'
+- Navigera till projektets root-mapp
+- Skriv mvn package
+- Kör programmet genom att ange: java -jar target/LeopardTigersJavaverktygHT2020-1.0-SNAPSHOT.jar
 - Nu körs programmet
 
 
