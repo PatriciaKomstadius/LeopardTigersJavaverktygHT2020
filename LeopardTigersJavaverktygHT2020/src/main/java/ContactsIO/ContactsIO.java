@@ -16,7 +16,7 @@ public class ContactsIO {
 
     public ContactsIO(String filepath) {
 
-        this.contactsFile = new File(findJarPath() + "/" + filepath);
+        this.contactsFile = findJarPath(filepath);
         try {
             this.contactsFile.createNewFile();
         }
@@ -97,7 +97,7 @@ public class ContactsIO {
         return contactFile;
     }
 
-    public String findJarPath(){
+    public File findJarPath(String filepath){
         File jarFile = null;
         CodeSource codeSource = ContactsIO.class.getProtectionDomain().getCodeSource();
         try {
@@ -105,7 +105,8 @@ public class ContactsIO {
         } catch (URISyntaxException e){
             e.printStackTrace();
         }
-        return jarFile.getParentFile().getPath();
+        String jarDir = jarFile.getParentFile().getPath();
+        return new File(jarDir + "/" + filepath);
     }
 
 }
