@@ -4,8 +4,6 @@ import Contacts.ContactManagement;
 import Contacts.Contact;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
 import static Contacts.ContactManagement.showContacts;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,46 +16,54 @@ import java.util.List;
 
 public class UserInputTest {
 
+    Contact contact;
+
     @BeforeAll
     static void init() {
         System.out.println("Running tests..");
     }
 
+    @AfterAll
+    static void clear(){
+        Contact contact = new Contact("Ebba", "Grön", "0812345678");
+        ContactManagement.removeContact(contact.getNumber(), true);
+    }
+
     @DisplayName("Adding contact")
     @Test
     void testAdd() {
-        Contact contact = new Contact("Elena", "Mandela", "0105588");
+       contact = new Contact("Ebba", "Grön", "0812345678");
 
-        ContactManagement.addContact(contact);
+        ContactManagement.addContact(contact, false);
 
         assertEquals(1, ContactManagement.showContacts());
-    }
-
-    @DisplayName("Deleting contact, checking contactlist")
-    @Test
-    void testSearchAndDelete() {
-
-        Contact testContact = new Contact("Evert", "Gustavsson", "0708899245");
-
-        ContactManagement.addContact(testContact);
-        ContactManagement.removeContact(testContact.getNumber(), true);
-
-        assertEquals(0, showContacts());
-
     }
 
     @DisplayName("Searching for contacts")
     @Test
     void testConsoleSearch() {
-        Contact testContact = new Contact("Ebba", "Grön", "0812345678");
-        ContactManagement.addContact(testContact);
+
+        contact = new Contact("Ebba", "Grön", "0812345678");
 
         String value = "Ebba";
 
         List<Contact> testResult = new ArrayList<>();
-        testResult.add(testContact);
+        testResult.add(contact);
 
         assertEquals(testResult, ContactManagement.search(value));
+
+    }
+
+    @DisplayName("Deleting contact")
+    @Test
+    void testSearchAndDelete() {
+        contact = new Contact("Ebba", "Grön", "0812345678");
+        ContactManagement.addContact(contact);
+
+        ContactManagement.removeContact(contact.getNumber(), false);
+
+        assertEquals(0, showContacts());
+
     }
 
 
@@ -91,10 +97,9 @@ public class UserInputTest {
         );
     }
 
-
     @DisplayName("Checking if number to contact is more than 8 digits")
     @Test
-    void testCheckNumber(){
+    void testCheckNumber() {
 
         UserInput ui = new UserInput();
 

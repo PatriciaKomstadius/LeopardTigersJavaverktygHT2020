@@ -10,7 +10,7 @@ public class Main {
         UserInput.menu();
 
         while (loop) {
-            UserInput.menuChoice();
+            UserInput.selectFromMenu();
         }
 
     }

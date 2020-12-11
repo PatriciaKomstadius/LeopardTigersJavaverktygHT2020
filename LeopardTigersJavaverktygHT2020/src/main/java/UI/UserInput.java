@@ -2,7 +2,6 @@ package UI;
 
 import Contacts.ContactManagement;
 import Contacts.Contact;
-
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +24,7 @@ public class UserInput {
 
     }
 
-    public static void menuChoice() {
+    public static void selectFromMenu() {
 
         Integer number = 0;
         boolean loop = true;
@@ -62,18 +61,6 @@ public class UserInput {
         }
     }
 
-    public static boolean checkNumber(String number) {
-
-        try {
-            if (number == null || number.length() >= 8) {
-                return true;
-            }
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Wrong input, try again.");
-        }
-        return false;
-    }
-
     public static void add() {
 
         System.out.println("Enter first name: ");
@@ -105,6 +92,18 @@ public class UserInput {
                 System.out.println("Sorry, could not save the contact. Details: " + e);
             }
         }
+    }
+
+    public static boolean checkNumber(String number) {
+
+        try {
+            if (number.length() >= 8) {
+                return true;
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Wrong input, try again.");
+        }
+        return false;
     }
 
     public static void consoleSearch() {
