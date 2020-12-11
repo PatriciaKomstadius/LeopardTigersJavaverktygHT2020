@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class ContactManagement {
 
-    private static ContactsIO io = new ContactsIO("LeopardTigersJavaverktygHT2020/src/main/resources/ContactBook.txt");
+    private static ContactsIO io = new ContactsIO("ContactBook.txt");
     private static final Set<Contact> contacts = new HashSet<>(io.readContacts());
 
     public static Set<Contact> getContacts() {

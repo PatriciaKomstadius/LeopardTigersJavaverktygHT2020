@@ -7,6 +7,7 @@ import Contacts.ContactManagement;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.CodeSource;
 import java.util.*;
 
 public class ContactsIO {
@@ -15,8 +16,16 @@ public class ContactsIO {
 
     public ContactsIO(String filepath) {
 
-        String absolutePath = new File(filepath).getAbsolutePath();
-        this.contactsFile=new File(absolutePath);
+        this.contactsFile = new File(findJarPath() + "/" + filepath);
+        try {
+            this.contactsFile.createNewFile();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*String absolutePath = new File(filepath).getAbsolutePath();
+        this.contactsFile=new File(absolutePath);*/
 
     }
 
@@ -86,6 +95,17 @@ public class ContactsIO {
             e.printStackTrace();
         }
         return contactFile;
+    }
+
+    public String findJarPath(){
+        File jarFile = null;
+        CodeSource codeSource = ContactsIO.class.getProtectionDomain().getCodeSource();
+        try {
+            jarFile = new File(codeSource.getLocation().toURI().getPath());
+        } catch (URISyntaxException e){
+            e.printStackTrace();
+        }
+        return jarFile.getParentFile().getPath();
     }
 
 }

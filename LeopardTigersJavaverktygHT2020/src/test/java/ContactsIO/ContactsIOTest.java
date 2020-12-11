@@ -40,12 +40,12 @@ public class ContactsIOTest {
                 contactOnFile.getFirstName() + contactOnFile.getLastName() + contactOnFile.getNumber());
     }
 
-    /*@Test
+    @Test
     public void test_writeContact() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(io.findResourcePath("/Users/asapersson/Documents/Johan IT-högskolan/LeopardTigersJavaverktygHT2020/LeopardTigersJavaverktygHT2020/src/main/resources/ContactBook.txt")))) {
             assertEquals("John, Doe, 0701234567", reader.readLine());
         }
-    }*/
+    }
 
     @Test
     public void test_rewriteContacts() {
