@@ -8,12 +8,14 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static Contacts.ContactManagement.search;
 import static Contacts.ContactManagement.showContacts;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.InputMismatchException;
+import java.util.List;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,11 +34,10 @@ public class UserInputTest {
 
         ContactManagement.addContact(contact);
 
-
         assertEquals(1, ContactManagement.showContacts());
     }
 
-
+/*
     @DisplayName("Removing contact from contactbook")
     @Test
     void testDelete() {
@@ -44,37 +45,19 @@ public class UserInputTest {
         ContactManagement.removeContact(deleteContact1);
         assertEquals(0, ContactManagement.showContacts());
     }
+*/
 
-
+    @DisplayName("Deleting contact, checking contactlist")
     @Test
     void testSearchAndDelete() {
 
         Contact testContact = new Contact("Evert", "Gustavsson", "008888");
 
-
-        String value = "008888";
-
         ContactManagement.addContact(testContact);
         ContactManagement.removeContact(testContact.getNumber(), true);
 
         assertEquals(0, showContacts());
-        //eller
-        // assertEquals(0, search(value));
 
-
-        // String number = "008888";
-
-        //  assertNull(testContact);
-
-        // assertEquals(0, showContacts());
-        //      assertEquals(0, testContact.getNumber());
-
-        /*
-        assertFalse(testContact == 0);
-
-        assertNotEquals(1, ContactManagement.removeContact(testContact.getNumber()));
-
-         */
     }
 
     @Test
@@ -83,10 +66,10 @@ public class UserInputTest {
 
         String value = "Ebba";
 
-        //  List<Contact> result = search(value);
+         List<Contact> result = search(value);
 
-        assertTrue(testContact.getFirstName().equals("Ebba"));
-//        assertEquals(result, ContactManagement.search(value));
+//        assertTrue(testContact.getFirstName().equals("Ebba"));
+   assertEquals(value, ContactManagement.search(value));
 
     }
 
@@ -109,18 +92,33 @@ public class UserInputTest {
 
      */
 
-    @DisplayName("Verifying throws of InputMisMatchException")
+    @DisplayName("Verifying throws of InputMisMatchException menu-choices")
     @Test
     void testReadInt() {
         UserInput ui = new UserInput();
 
-        String input = "input string instead of Integer";
+        String input = "Input string instead of Integer";
 
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
         assertThrows(InputMismatchException.class, () ->
                 ui.readInt()
+        );
+    }
+
+    @DisplayName("Veryfying throws of InputMismatchException search/delete-method")
+    @Test
+    void testReadIntForSearchAndDelete() {
+        UserInput ui = new UserInput();
+
+        String input = "Input string instead of Integer";
+
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertThrows(InputMismatchException.class, () ->
+                ui.readIntForSearchAndDelete()
         );
     }
 

@@ -14,7 +14,6 @@ public class UserInput {
 
     private static Scanner scan = new Scanner(System.in);
 
-
     public static void menu() {
 
         System.out.println();
@@ -46,7 +45,6 @@ public class UserInput {
 
             switch (number) {
                 case 0:
-                    loop = false;
                     break;
                 case 1:
                     add();
@@ -81,10 +79,10 @@ public class UserInput {
         System.out.println("Enter phone number: ");
         String number = scan.nextLine();
 
-        Contact c = null;
+      //  Contact c = null;
 
         try {
-            c = new Contact(firstName, lastName, number);
+           Contact c = new Contact(firstName, lastName, number);
 
             if (number.length() < 8) {
                 System.out.println("Number is too short. Please enter a number of minimum 8 digits");
@@ -92,7 +90,6 @@ public class UserInput {
             }
             if (number.length() >= 8) {
                 Contacts.ContactManagement.addContact(c, true);
-
             }
 
         } catch (Exception e) {
@@ -118,19 +115,15 @@ public class UserInput {
         Scanner scan = new Scanner(System.in);
         String value = scan.nextLine();
 
-//skapar en lista som innehåller det metoden search i ContactManagement hittar genom att söka efter angivet värde
         List<Contact> result = search(value);
 
-        //går igenom hela listan av värden som hittats i search, skapa en instans av Contact som är lika med det som hittats i result för utskrift
         for (int i = 0; i < result.size(); i++) {
             Contact c = result.get(i);
             System.out.println(c.getFirstName() + " " + c.getLastName() + " " + c.getNumber());
-            //skriver ut namn och nummer till träffarna
         }
     }
 
-    //TEST JUNIT
-    public static boolean searchAndDelete() {
+    public static void searchAndDelete() {
 
         System.out.println("Search for the contact you want to delete: ");
         Scanner scan = new Scanner(System.in);
@@ -152,7 +145,7 @@ public class UserInput {
 
 
                 try {
-                    indexNr = readInt2();
+                    indexNr = readIntForSearchAndDelete();
 
                     if (indexNr > result.size()) {
                         System.out.println("Too many digits. Enter index of the contact to delete");
@@ -166,7 +159,6 @@ public class UserInput {
                 }
             }
 
-            //skapar en instans av Contact som innehåller kontakter samt indexnr
             Contact selectedContact = result.get(indexNr);
 
             System.out.println("Selected contact:" + selectedContact.getFirstName() + " " + selectedContact.getLastName());
@@ -179,8 +171,7 @@ public class UserInput {
                 case "y":
                     try {
                         ContactManagement.removeContact(selectedContact.getNumber(), true);
-                        System.out.println("Contact has been deleted");
-                        return true;
+                        System.out.println("Contact has been deleted.");
 
                     } catch (Exception e) {
                         System.out.println("Error: Contact was not deleted. Details: " + e);
@@ -190,17 +181,13 @@ public class UserInput {
                     System.out.println("Contact deletion was cancelled.");
                     break;
                 default:
-                    System.out.println("Invalid input. You're being redirected back to menu.");
+                    System.out.println("Invalid input. You're being redirected back to the menu.");
                     break;
             }
 
         } else {
             System.out.println("No contacts found.");
-
         }
-
-
-        return false;
     }
 
 
@@ -236,13 +223,11 @@ public class UserInput {
         }
     }
 
-    public static int readInt2() {
+    public static int readIntForSearchAndDelete() {
         Scanner scan = new Scanner(System.in);
         try {
             System.out.println("Select the index of the contact you want to delete: ");
-            //  System.out.println("Enter your choice (Press 0 to quit):");
             Integer input = scan.nextInt();
-
             return input;
 
         } catch (InputMismatchException e) {
