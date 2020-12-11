@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import static Contacts.ContactManagement.search;
 
-
 public class UserInput {
 
     private static Scanner scan = new Scanner(System.in);
@@ -32,11 +31,9 @@ public class UserInput {
         boolean loop = true;
 
         while (loop) {
-            //   UserInput ui = new UserInput();
 
             try {
                 number = readInt();
-
                 loop = false;
 
             } catch (InputMismatchException e) {
@@ -50,15 +47,12 @@ public class UserInput {
                     add();
                     break;
                 case 2:
-                    //delete();
                     searchAndDelete();
                     break;
                 case 3:
-                    //searchByFirstName();
                     consoleSearch();
                     break;
                 case 4:
-                    //searchByLastName();
                     ContactManagement.showContacts();
                     break;
                 default:
@@ -68,7 +62,7 @@ public class UserInput {
         }
     }
 
-    public static String add() {
+    public static int add() {
 
         System.out.println("Enter first name: ");
         String firstName = scan.nextLine();
@@ -76,38 +70,36 @@ public class UserInput {
         System.out.println("Enter last name: ");
         String lastName = scan.nextLine();
 
-        System.out.println("Enter phone number: ");
-        String number = scan.nextLine();
+        //  Contact c = null;
+        boolean loop = true;
+        String number = null;
 
-      //  Contact c = null;
+        while (loop) {
+            System.out.println("Enter phone number: ");
+            number = scan.nextLine();
 
-        try {
-           Contact c = new Contact(firstName, lastName, number);
+            try {
 
-            if (number.length() < 8) {
-                System.out.println("Number is too short. Please enter a number of minimum 8 digits");
+                if (number.length() < 8) {
 
+                    System.out.println("The number is too short. Please enter a number of minimum 8 digits");
+
+                } else {
+                    loop = false;
+
+                    Contact c = new Contact(firstName, lastName, number);
+
+                    Contacts.ContactManagement.addContact(c, true);
+
+                    System.out.println("Contact saved.");
+                }
+
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Sorry, could not save the contact. Details: " + e);
             }
-            if (number.length() >= 8) {
-                Contacts.ContactManagement.addContact(c, true);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Sorry, could not save the contact. Details: " + e);
         }
-        return number;
+        return number.length();
     }
-
-
-    /*
-    public static void delete() {
-
-        System.out.print("Enter phone number to delete contact: ");
-        String number = scan.nextLine();
-
-        Contacts.ContactManagement.removeContact(number, true);
-    }
-    */
 
     public static void consoleSearch() {
 
@@ -143,15 +135,14 @@ public class UserInput {
 
             while (loop) {
 
-
                 try {
                     indexNr = readIntForSearchAndDelete();
 
                     if (indexNr > result.size()) {
                         System.out.println("Too many digits. Enter index of the contact to delete");
-                    }
-                    else {
-                    loop = false;
+
+                    } else {
+                        loop = false;
                     }
 
                 } catch (InputMismatchException e) {
@@ -184,29 +175,10 @@ public class UserInput {
                     System.out.println("Invalid input. You're being redirected back to the menu.");
                     break;
             }
-
         } else {
             System.out.println("No contacts found.");
         }
     }
-
-
-/*
-    public static void searchByFirstName() {
-        System.out.println("Enter first name: ");
-        String firstName = scan.nextLine();
-
-        ContactManagement.searchFirstName(firstName);
-    }
-
-    public static void searchByLastName() {
-        System.out.println("Enter last name: ");
-        String lastName = scan.nextLine();
-
-        ContactManagement.searchLastName(lastName);
-    }
-
- */
 
     public static int readInt() {
         Scanner scan = new Scanner(System.in);
