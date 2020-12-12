@@ -83,13 +83,14 @@ public class ContactTest {
     @Test
     @DisplayName("Equals")
     public void HashEquals() {
+        ContactManagement contactManagement = new ContactManagement();
         Contact contact = new Contact("Nika", "Arya", "0734567890");
         Contact contact2 = new Contact("Lisa", "Nilsson", "0734567890");
 
-        ContactManagement.addContact(contact);
-        ContactManagement.addContact(contact2);
+        contactManagement.addContact(contact);
+        contactManagement.addContact(contact2);
 
-        assertEquals(1, ContactManagement.showContacts());
+        assertEquals(1, contactManagement.showContacts());
 
     }
 }

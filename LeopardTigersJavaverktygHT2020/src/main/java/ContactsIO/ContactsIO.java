@@ -59,17 +59,17 @@ public class ContactsIO {
         }
     }
 
-    public void reWriteContacts() {
+    /*public void reWriteContacts() {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(contactsFile))){
-            for (Contact contact : ContactManagement.getContacts()) {
+            for (Contact contact : contactManagement.getContacts()) {
                 writer.write(contact.getFirstName() + ", " + contact.getLastName() + ", " +
                         contact.getNumber().replaceAll("\\s", "") + "\n");
             }
         } catch (IOException e){
             e.printStackTrace();
         }
-    }
+    }*/
 
     public void clearContacts(){
         try {

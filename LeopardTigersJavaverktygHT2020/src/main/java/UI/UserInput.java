@@ -6,10 +6,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import static Contacts.ContactManagement.search;
-
 public class UserInput {
 
+    private static ContactManagement contactManagement = new ContactManagement();
     private static Scanner scan = new Scanner(System.in);
 
     public static void menu() {
@@ -52,7 +51,7 @@ public class UserInput {
                     consoleSearch();
                     break;
                 case 4:
-                    ContactManagement.showContacts();
+                    contactManagement.showContacts();
                     break;
                 default:
                     System.out.println("Please choose one of the options listed above.");
@@ -81,7 +80,7 @@ public class UserInput {
 
                     loop = false;
                     Contact c = new Contact(firstName, lastName, number);
-                    Contacts.ContactManagement.addContact(c, true);
+                    contactManagement.addContact(c, true);
                     System.out.println("Contact saved.");
 
                 } else {
@@ -112,7 +111,7 @@ public class UserInput {
         Scanner scan = new Scanner(System.in);
         String value = scan.nextLine();
 
-        List<Contact> result = search(value);
+        List<Contact> result = contactManagement.search(value);
 
         for (int i = 0; i < result.size(); i++) {
             Contact c = result.get(i);
@@ -126,7 +125,7 @@ public class UserInput {
         Scanner scan = new Scanner(System.in);
         String value = scan.nextLine();
 
-        List<Contact> result = search(value);
+        List<Contact> result = contactManagement.search(value);
 
         if (result.size() != 0) {
 
@@ -166,7 +165,7 @@ public class UserInput {
 
                 case "y":
                     try {
-                        ContactManagement.removeContact(selectedContact.getNumber(), true);
+                        contactManagement.removeContact(selectedContact.getNumber(), true);
                         System.out.println("Contact has been deleted.");
 
                     } catch (Exception e) {

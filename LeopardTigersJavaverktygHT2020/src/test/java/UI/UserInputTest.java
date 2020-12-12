@@ -5,7 +5,6 @@ import Contacts.Contact;
 
 import org.junit.jupiter.api.*;
 
-import static Contacts.ContactManagement.showContacts;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
@@ -16,6 +15,7 @@ import java.util.List;
 
 public class UserInputTest {
 
+    private ContactManagement contactManagement;
     Contact contact;
 
     @BeforeAll
@@ -23,10 +23,16 @@ public class UserInputTest {
         System.out.println("Running tests..");
     }
 
+    @BeforeEach
+    void instantiate(){
+        this.contactManagement= new ContactManagement();
+    }
+
     @AfterAll
     static void clear(){
+        ContactManagement contactManagement = new ContactManagement();
         Contact contact = new Contact("Ebba", "Grön", "0812345678");
-        ContactManagement.removeContact(contact.getNumber(), true);
+        contactManagement.removeContact(contact.getNumber(), true);
     }
 
     @DisplayName("Adding contact")
@@ -34,9 +40,9 @@ public class UserInputTest {
     void testAdd() {
        contact = new Contact("Ebba", "Grön", "0812345678");
 
-        ContactManagement.addContact(contact, false);
+        contactManagement.addContact(contact, false);
 
-        assertEquals(1, ContactManagement.showContacts());
+        assertEquals(1, contactManagement.showContacts());
     }
 
     @DisplayName("Searching for contacts")
@@ -50,7 +56,7 @@ public class UserInputTest {
         List<Contact> testResult = new ArrayList<>();
         testResult.add(contact);
 
-        assertEquals(testResult, ContactManagement.search(value));
+        assertEquals(testResult, contactManagement.search(value));
 
     }
 
@@ -58,11 +64,11 @@ public class UserInputTest {
     @Test
     void testSearchAndDelete() {
         contact = new Contact("Ebba", "Grön", "0812345678");
-        ContactManagement.addContact(contact);
+        contactManagement.addContact(contact);
 
-        ContactManagement.removeContact(contact.getNumber(), false);
+        contactManagement.removeContact(contact.getNumber(), false);
 
-        assertEquals(0, showContacts());
+        assertEquals(0, contactManagement.showContacts());
 
     }
 
