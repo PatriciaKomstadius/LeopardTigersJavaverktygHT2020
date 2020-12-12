@@ -2,7 +2,6 @@
 package ContactsIO;
 
 import Contacts.Contact;
-import Contacts.ContactManagement;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.NullSource;

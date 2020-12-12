@@ -2,7 +2,6 @@
 package ContactsIO;
 
 import Contacts.Contact;
-import Contacts.ContactManagement;
 
 import java.io.*;
 import java.net.URISyntaxException;
