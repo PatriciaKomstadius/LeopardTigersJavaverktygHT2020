@@ -42,6 +42,7 @@ public class ContactManagement {
     public void removeContact(String number, boolean removeFromFile) {
         if (contacts.removeIf(c -> c.getNumber().equalsIgnoreCase(number))) {
             if (removeFromFile) {
+                io.clearContacts();
                 for (Contact contact : contacts) {
                     io.writeContact(contact);
                 }
