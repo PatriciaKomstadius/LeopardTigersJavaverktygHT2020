@@ -51,6 +51,8 @@ public class UserInputTest {
 
         contact = new Contact("Ebba", "Grön", "0812345678");
 
+        contactManagement.addContact(contact, false);
+
         String value = "Ebba";
 
         List<Contact> testResult = new ArrayList<>();
