@@ -46,13 +46,6 @@ public class ContactsIOTest {
         }
     }
 
-   /* @Test
-    public void test_rewriteContacts() {
-        ContactManagement contactManagement = new ContactManagement();
-        io.reWriteContacts();
-        assertEquals(contactManagement.getContacts(), io.readContacts());
-    }*/
-
     @Test
     public void test_clearContacts() {
         assertEquals(1, io.readContacts().size());

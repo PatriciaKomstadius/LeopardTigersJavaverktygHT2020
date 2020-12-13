@@ -23,7 +23,8 @@ public class ContactsIO {
             e.printStackTrace();
         }
 
-        /*String absolutePath = new File(filepath).getAbsolutePath();
+        /*Tidigare metod som returnerade working directory
+        String absolutePath = new File(filepath).getAbsolutePath();
         this.contactsFile=new File(absolutePath);*/
 
     }
