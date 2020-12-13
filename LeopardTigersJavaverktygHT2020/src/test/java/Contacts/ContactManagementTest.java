@@ -102,4 +102,19 @@ public class ContactManagementTest {
         assertNotEquals("Jenkins", contact1.getLastName());
         assertNotNull(contact1);
     }
+    
+    @Test
+    @DisplayName("Search")
+    public void search() {
+        Contact contact1 = new Contact("Jane", "Doe", "0707000070");
+
+        ContactManagement contactManagement = new ContactManagement();
+        contactManagement.addContact(contact1);
+
+        List<Contact> searchTest = new ArrayList<>();
+        searchTest.add(contact1);
+
+
+        assertEquals(searchTest, contactManagement.search("Jane"));
+    }
 }
