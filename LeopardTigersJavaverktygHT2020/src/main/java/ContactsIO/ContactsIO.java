@@ -13,9 +13,9 @@ public class ContactsIO {
 
     private File contactsFile;
 
-    public ContactsIO(String filepath) {
+    public ContactsIO(String fileName) {
 
-        this.contactsFile = findJarPath(filepath);
+        this.contactsFile = findJarPath(fileName);
         try {
             this.contactsFile.createNewFile();
         }
@@ -96,7 +96,7 @@ public class ContactsIO {
         return contactFile;
     }
 
-    public File findJarPath(String filepath){
+    public File findJarPath(String fileName){
         File jarFile = null;
         CodeSource codeSource = ContactsIO.class.getProtectionDomain().getCodeSource();
         try {
@@ -105,7 +105,7 @@ public class ContactsIO {
             e.printStackTrace();
         }
         String jarDir = jarFile.getParentFile().getPath();
-        return new File(jarDir + "/" + filepath);
+        return new File(jarDir + "/" + fileName);
     }
 
 }
