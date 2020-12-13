@@ -6,8 +6,17 @@ import java.util.*;
 
 public class ContactManagement {
 
-    private ContactsIO io = new ContactsIO("ContactBook.txt");
-    private final Set<Contact> contacts = new HashSet<>(io.readContacts());
+    private ContactsIO io;
+    private final Set<Contact> contacts;
+
+    public ContactManagement() {
+         this.contacts = new HashSet<>();
+    }
+
+    public ContactManagement(String fileName) {
+        this.io = new ContactsIO(fileName);
+        this.contacts = new HashSet<>(io.readContacts());
+    }
 
     public Set<Contact> getContacts() {
 
