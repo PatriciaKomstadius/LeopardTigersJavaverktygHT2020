@@ -17,6 +17,7 @@ public class UserInputTest {
 
     private ContactManagement contactManagement;
     Contact contact;
+    Contact contact2;
 
     @BeforeAll
     static void init() {
@@ -29,20 +30,20 @@ public class UserInputTest {
     }
 
     @AfterAll
-    static void clear(){
-        ContactManagement contactManagement = new ContactManagement();
-        Contact contact = new Contact("Ebba", "Grön", "0812345678");
-        contactManagement.removeContact(contact.getNumber(), true);
+    static void finish(){
+        System.out.println("Tests completed.");
     }
 
     @DisplayName("Adding contact")
     @Test
     void testAdd() {
        contact = new Contact("Ebba", "Grön", "0812345678");
+        contact2 = new Contact("Evert", "Sivers", "07012345689");
 
-        contactManagement.addContact(contact, false);
+        contactManagement.addContact(contact2);
+        contactManagement.addContact(contact);
 
-        assertEquals(1, contactManagement.showContacts());
+        assertEquals(2, contactManagement.showContacts());
     }
 
     @DisplayName("Searching for contacts")
@@ -51,7 +52,7 @@ public class UserInputTest {
 
         contact = new Contact("Ebba", "Grön", "0812345678");
 
-        contactManagement.addContact(contact, false);
+        contactManagement.addContact(contact);
 
         String value = "Ebba";
 
@@ -68,7 +69,7 @@ public class UserInputTest {
         contact = new Contact("Ebba", "Grön", "0812345678");
         contactManagement.addContact(contact);
 
-        contactManagement.removeContact(contact.getNumber(), false);
+        contactManagement.removeContact(contact.getNumber());
 
         assertEquals(0, contactManagement.showContacts());
 

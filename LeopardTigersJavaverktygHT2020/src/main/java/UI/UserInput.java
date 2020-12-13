@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class UserInput {
 
-    private static ContactManagement contactManagement = new ContactManagement("ContactBook.txt");
+    private static ContactManagement contactManagement = new ContactManagement();
     private static Scanner scan = new Scanner(System.in);
 
     public static void menu() {
