@@ -59,24 +59,6 @@ public class ContactManagement {
         }
     }
 
-
-    public void searchFirstName(String firstName) {
-        for (Contact c : contacts) {
-            if (c.getFirstName().equalsIgnoreCase(firstName)) {
-                System.out.println(c);
-            }
-        }
-    }
-
-    public void searchLastName(String lastName) {
-        for (Contact c : contacts) {
-            if (c.getLastName().equalsIgnoreCase(lastName)) {
-                System.out.println(c);
-            }
-        }
-    }
-
-    //TEST JUNIT
     public List<Contact> search(String value) {
 
         List<Contact> result = new ArrayList<Contact>();
