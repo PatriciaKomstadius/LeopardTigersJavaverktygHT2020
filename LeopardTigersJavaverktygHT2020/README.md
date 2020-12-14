@@ -21,7 +21,7 @@ INSTRUKTIONER FÖR PROGRAMMET UTAN IDE:
 - Öppna terminalen
 - Navigera till projektets root-mapp
 - Skriv mvn package
-- Kör programmet genom att ange: java -jar target/LeopardTigersJavaverktygHT2020-1.0-SNAPSHOT.jar
+- Kör programmet genom att ange: java -jar LeopardTigersJavaverktygHT2020-1.0/target/LeopardTigersJavaverktygHT2020-1.0.jar
 - Nu körs programmet
 
 
